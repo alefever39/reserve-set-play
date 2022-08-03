@@ -8,7 +8,7 @@ function DetailsContainer({ displayReservation, handleNewReservation }) {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      spacing="150px"
+      spacing="80px"
       my="20px"
     >
       <ReservationForm displayReservation={displayReservation} />
