@@ -13,7 +13,7 @@ function SpaceContainer({ recCenters }) {
   today = year + "-" + month + "-" + day;
 
   const [displayDate, setDisplayDate] = useState(today);
-  const [displayReservation, setDisplayReservation] = useState({});
+  const [displayReservation, setDisplayReservation] = useState("");
   const [displayRecCenter, setDisplayRecCenter] = useState(recCenters[0]);
   const [displayResources, setDisplayResources] = useState([]);
 
