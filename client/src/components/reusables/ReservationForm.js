@@ -1,7 +1,31 @@
 import { Box } from "@chakra-ui/react";
 
 function ReservationForm({ displayReservation }) {
-  console.log(displayReservation);
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let date = "";
+  let dayOfTheWeek = "";
+  let day = "";
+  let month = "";
+  let year = "";
+  let displayDate = "";
+
+  if (displayReservation !== "") {
+    date = new Date(displayReservation.date);
+    dayOfTheWeek = weekday[date.getDay()];
+    day = String(date.getDate()).padStart(2, "0");
+    month = String(date.getMonth() + 1).padStart(2, "0");
+    year = date.getFullYear();
+    displayDate = month + "/" + day + "/" + year;
+  }
+
   return (
     <Box
       border="2px"
@@ -21,7 +45,7 @@ function ReservationForm({ displayReservation }) {
         mt="10px"
         mb="15px"
       ></Box>
-      {displayReservation.length !== 0 ? (
+      {displayReservation !== "" ? (
         <>
           <Box
             fontWeight="bold"
@@ -39,7 +63,9 @@ function ReservationForm({ displayReservation }) {
             color="gray.600"
             px="40px"
           >
-            {displayReservation.date} • {displayReservation.time}:00
+            {dayOfTheWeek}, {displayDate}
+            {"  "}•{"  "}
+            {displayReservation.time}:00
           </Box>
           <Box
             fontWeight="bold"
@@ -62,7 +88,7 @@ function ReservationForm({ displayReservation }) {
           </Box>
         </>
       ) : (
-        <Box fontWeight="semibold" color="gray.600">
+        <Box fontWeight="semibold" color="gray.600" px="15px">
           Choose timeslot to view reservation details
         </Box>
       )}
