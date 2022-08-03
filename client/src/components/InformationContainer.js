@@ -15,9 +15,16 @@ function InformationContainer({
   const history = useHistory();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/rec_centers`)
+    console.log("useEffect called");
+    fetch(`http://localhost:3000/rec_centers`, {
+      method: "GET",
+      credentials: "include",
+    })
       .then((res) => res.json())
-      .then((data) => setRecCenters(data));
+      .then((data) => {
+        console.log("info container fetch", data);
+        setRecCenters(data);
+      });
   }, []);
 
   useEffect(() => {
@@ -36,6 +43,7 @@ function InformationContainer({
       history.push("/");
     }
   }, [user]);
+
 
   return (
     <Switch>

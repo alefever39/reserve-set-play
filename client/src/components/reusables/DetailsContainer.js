@@ -1,15 +1,18 @@
+import { HStack } from "@chakra-ui/react";
 import ReservationEventContainer from "./ReservationEventContainer";
 import ReservationForm from "./ReservationForm";
 
-function DetailsContainer() {
+function DetailsContainer({ displayReservation }) {
   return (
-    <div>
-      <h2>DetailsContainer</h2>
-      <div>
-        <ReservationForm />
-        <ReservationEventContainer />
-      </div>
-    </div>
+    <HStack
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      spacing="150px"
+    >
+      <ReservationForm displayReservation={displayReservation} />
+      <ReservationEventContainer />
+    </HStack>
   );
 }
 
