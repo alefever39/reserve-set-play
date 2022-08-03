@@ -48,7 +48,12 @@ function InformationContainer({
         />
       </Route>
       <Route path="/home">
-        <PlayerContainer user={user} />
+        <PlayerContainer
+          user={user}
+          recCenters={recCenters}
+          loginModalOpen={loginModalOpen}
+          setLoginModalOpen={setLoginModalOpen}
+        />
       </Route>
       {/* <Route path="/login">{onLoginPath}</Route> */}
       <Route path="/">
