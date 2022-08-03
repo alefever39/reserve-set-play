@@ -41,9 +41,20 @@ function Resources() {
   }
 
   function removeResource(deletedResourceId){
-    const updatedList = [resources.filter((resource) => resource.id !== deletedResourceId)]
+    const updatedList = resources.filter((resource) => resource.id !== deletedResourceId)
     console.log(updatedList)
-    // setResources(updatedList)
+    setResources(updatedList)
+  }
+
+  function updateResource(updatedResource){
+    const updatedResourcesList = resources.map((resource) => {
+      if (resource.id === updatedResource.id) {
+        return updatedResource
+      } else {
+        return resource;
+      }
+    })
+    setResources(updatedResourcesList)
   }
 
   const resourceItems = resources.map((resource) => (
@@ -62,7 +73,7 @@ function Resources() {
           <ResourceCreateModal setCreateModalOpen={setCreateModalOpen} recCenterId={rec_center_id} handleAddResource={handleAddResource}/>
           ) : null}
         {editModalOpen ? (
-          <ResourceEditModal setEditModalOpen={setEditModalOpen} recCenterId={rec_center_id} activeResourceId={activeResourceId} removeResource={removeResource}/>
+          <ResourceEditModal setEditModalOpen={setEditModalOpen} recCenterId={rec_center_id} activeResourceId={activeResourceId} removeResource={removeResource} updateResource={updateResource}/>
           ) : null}
         {resourceItems}
       </SimpleGrid>
