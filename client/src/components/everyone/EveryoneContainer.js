@@ -2,7 +2,7 @@ import Calendar from "../reusables/Calendar";
 import DateCarousel from "../reusables/DateCarousel";
 import RecCenterCarousel from "../reusables/RecCenterCarousel";
 import LoginModal from "./LoginModal";
-import { Flex, Box } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 function EveryoneContainer({
   recCenters,
@@ -13,6 +13,7 @@ function EveryoneContainer({
   return (
     <div>
       <RecCenterCarousel recCenters={recCenters} />
+      <br />
       <DateCarousel />
       <Calendar />
       {loginModalOpen ? (

@@ -3,10 +3,11 @@ import DateCarousel from "./DateCarousel";
 import DetailsContainer from "./DetailsContainer";
 import RecCenterCarousel from "./RecCenterCarousel";
 
-function SpaceContainer({recCenters}) {
+function SpaceContainer({ recCenters }) {
   return (
     <div>
-      <RecCenterCarousel recCenters = {recCenters}/>
+      <RecCenterCarousel recCenters={recCenters} />
+      <br />
       <DateCarousel />
       <Calendar />
       <DetailsContainer />
