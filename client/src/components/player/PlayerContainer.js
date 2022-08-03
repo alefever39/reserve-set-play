@@ -17,12 +17,12 @@ function PlayerContainer({
   } else {
     history.push("/");
   }
-  
+  console.log(user)
   return (
     <div>
       <Switch>
         <Route path="/home/my_reservations">
-          <Reservations />
+          <Reservations user={user}/>
         </Route>
         <Route path="/home">
           <SpaceContainer recCenters={recCenters} />

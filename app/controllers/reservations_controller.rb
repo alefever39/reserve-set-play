@@ -6,4 +6,10 @@ class ReservationsController < ApplicationController
   def index
     render json: Reservation.all
   end
+
+  def user_reservations_index
+    user = User.find(params[:id])
+    reservations = Reservation.where(user_id: user.id)
+    render json: reservations
+  end
 end

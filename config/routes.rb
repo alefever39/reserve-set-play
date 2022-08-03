@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       to: "rec_centers#reservations_today_index"
   get "/admin/rec_centers/:rec_center_id/reservations/:date",
       to: "rec_centers#reservations_by_date_index"
+  get "/users/:id/reservations",
+        to: "reservations#user_reservations_index"
 
   #Authentication routes
   post "/signup", to: "users#create"
