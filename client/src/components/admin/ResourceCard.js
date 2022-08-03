@@ -7,10 +7,10 @@ function ResourceCard({resource, setEditModalOpen, setActiveResource}) {
   }
   
   return (
-    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-      <Image src={resource.sports_type.image}/>
+    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' justifyContent="space-around">
+      <Image src={resource.sports_type.image} width='full' height='220px'/>
       <Box p='6'>
-        <Box display='flex' alignItems='baseline'>
+        <Box display='flex' alignItems='center' justifyContent="space-between" >
           <Box
           mt='1'
           fontWeight='semibold'

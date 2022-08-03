@@ -16,21 +16,20 @@ function RecCenterCard({ recCenter }) {
       overflow="hidden"
       onClick={handleClick}
     >
-      <Flex direction="column" align="center">
-        <Box w="230px">
-          <Image fit src="/map_image.png" alt="Map with location" />
+      <Flex direction="column" align="center" m="5px">
+        <Box w="230px" mt="10px">
+          <Image fit src="/map_image.png" alt="Map with location" width='full' height='180px'/>
         </Box>
         <br />
         <Box>
-          <Box display="flex" alignItems="baseline">
+        {recCenter.name}
+          <Box display="flex" justifyContent="space-around">
             <Box
               mt="1"
               fontWeight="semibold"
               as="h4"
               lineHeight="tight"
-              isTruncated
-            >
-              {recCenter.name}
+            > 
             </Box>
             <Box
               color="gray.500"
@@ -45,7 +44,7 @@ function RecCenterCard({ recCenter }) {
           </Box>
 
           <Box as="span" color="gray.600" fontSize="sm">
-            Opens at: {recCenter.opens_at} - Closes at: {recCenter.closes_at}
+            Open hours: {recCenter.opening_hours}
           </Box>
 
           <Box display="flex" mt="2" alignItems="center">

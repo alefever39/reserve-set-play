@@ -1,4 +1,4 @@
-import { SimpleGrid, Button, Heading, Flex, Spacer} from '@chakra-ui/react'
+import { SimpleGrid, Button, Heading, Flex, Box} from '@chakra-ui/react'
 
 import ResourceCreateModal from "./ResourceCreateModal";
 import ResourceCard from "./ResourceCard";
@@ -62,22 +62,23 @@ function Resources() {
   ))
 
   return (
-    <div>
-      <Flex h='100px' >
+    <Box>
+      <Flex h='100px' justifyContent="space-between" alignItems="center" mx="15px">
         <Heading as='h1'>Resources at {recCenter.name}</Heading>
-        <Spacer />
         <Button onClick={handleCreateOpen}>Add new resource</Button>
       </Flex>
-      <SimpleGrid minChildWidth='340px' spacing='40px'>
-        {createModalOpen ? (
-          <ResourceCreateModal setCreateModalOpen={setCreateModalOpen} recCenterId={rec_center_id} handleAddResource={handleAddResource}/>
-          ) : null}
-        {editModalOpen ? (
-          <ResourceEditModal setEditModalOpen={setEditModalOpen} recCenterId={rec_center_id} activeResourceId={activeResourceId} removeResource={removeResource} updateResource={updateResource}/>
-          ) : null}
-        {resourceItems}
-      </SimpleGrid>
-    </div>
+      <Box>
+        <SimpleGrid minChildWidth='320px' spacing='30px' mx="15px"  >
+          {createModalOpen ? (
+            <ResourceCreateModal setCreateModalOpen={setCreateModalOpen} recCenterId={rec_center_id} handleAddResource={handleAddResource}/>
+            ) : null}
+          {editModalOpen ? (
+            <ResourceEditModal setEditModalOpen={setEditModalOpen} recCenterId={rec_center_id} activeResourceId={activeResourceId} removeResource={removeResource} updateResource={updateResource}/>
+            ) : null}
+          {resourceItems}
+        </SimpleGrid>
+      </Box>
+    </Box>
 
   );
 }

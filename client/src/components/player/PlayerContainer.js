@@ -20,6 +20,7 @@ function PlayerContainer({
     history.push("/");
   }
 
+
   function handleCalendarSelection(currentCalendarSelection) {
     setDisplayReservation(currentCalendarSelection);
   }
@@ -47,12 +48,11 @@ function PlayerContainer({
       history.push("/home/my_reservations");
     });
   }
-
   return (
     <div>
       <Switch>
         <Route path="/home/my_reservations">
-          <Reservations />
+          <Reservations user={user}/>
         </Route>
         <Route path="/home">
           <SpaceContainer

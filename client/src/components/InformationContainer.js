@@ -2,7 +2,6 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import AdminContainer from "./admin/AdminContainer";
 import PlayerContainer from "./player/PlayerContainer";
 import EveryoneContainer from "./everyone/EveryoneContainer";
-import LoginModal from "./everyone/LoginModal";
 import { useState, useEffect } from "react";
 
 function InformationContainer({
@@ -63,7 +62,6 @@ function InformationContainer({
           setLoginModalOpen={setLoginModalOpen}
         />
       </Route>
-      {/* <Route path="/login">{onLoginPath}</Route> */}
       <Route path="/">
         <EveryoneContainer
           recCenters={recCenters}
