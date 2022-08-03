@@ -8,6 +8,8 @@ import {
   Breadcrumb,
   BreadcrumbLink,
   BreadcrumbItem,
+  Text,
+  Image,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -123,7 +125,11 @@ function NavBar({ setLoginModalOpen, user, setUser }) {
     >
       <Box p="2">
         <Heading size="md">
-          <img src="./reserve_set_play_logo.png"></img>
+          <Image
+            boxSize="50px"
+            src="/reserve_set_play_logo.png"
+            alt="Reserve set play logo"
+          />
         </Heading>
       </Box>
       {navigation}
@@ -134,9 +140,12 @@ function NavBar({ setLoginModalOpen, user, setUser }) {
       </BreadcrumbItem> */}
       <Spacer />
       {user.id ? (
-        <Button colorScheme="red" onClick={handleLogout}>
-          Log out
-        </Button>
+        <>
+          <Text fontSize="xl">Welcome, {user.first_name}!</Text>
+          <Button colorScheme="red" onClick={handleLogout}>
+            Log out
+          </Button>
+        </>
       ) : (
         <Button colorScheme="teal" onClick={handleLogin}>
           Log in

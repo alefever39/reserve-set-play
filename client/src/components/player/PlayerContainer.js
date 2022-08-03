@@ -2,7 +2,12 @@ import SpaceContainer from "../reusables/SpaceContainer";
 import { Route, Switch, useHistory } from "react-router-dom";
 import Reservations from "./Reservations";
 
-function PlayerContainer({ user }) {
+function PlayerContainer({
+  user,
+  recCenters,
+  loginModalOpen,
+  setLoginModalOpen,
+}) {
   const history = useHistory();
 
   if (user.user_type) {
@@ -20,7 +25,7 @@ function PlayerContainer({ user }) {
           <Reservations />
         </Route>
         <Route path="/home">
-          <SpaceContainer />
+          <SpaceContainer recCenters={recCenters} />
         </Route>
       </Switch>
     </div>
