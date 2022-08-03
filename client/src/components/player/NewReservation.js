@@ -4,9 +4,12 @@ function NewReservation({ handleNewReservation }) {
     <Box
       as="button"
       onClick={handleNewReservation}
-      border="2px"
-      borderRadius="md"
-      p="4px"
+      background="teal.300"
+      borderRadius="2xl"
+      px="30px"
+      py="10px"
+      fontWeight="semibold"
+      _hover={{ background: "teal.200" }}
     >
       {" "}
       Reserve Space
