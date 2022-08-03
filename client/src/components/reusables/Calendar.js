@@ -17,7 +17,7 @@ function Calendar({
   const numOfResources = displayResources.length;
   const gridColumns = numOfResources + 1;
   const dynamicGridTemplate = createDynamicGridTemplate();
-  const dynamicColumns = `80px repeat(${numOfResources}, 1fr)`;
+  const dynamicColumns = `100px repeat(${numOfResources}, 1fr)`;
   const dynamicRows = `repeat(${recCenterHours + 1}, 1fr})`;
 
   useEffect(() => {
@@ -115,6 +115,7 @@ function Calendar({
   }
 
   function timeSquare(calendarId, iteration) {
+    const militaryTime = iteration / gridColumns + recCenterOpenTime;
     return (
       <GridItem
         key={calendarId}
@@ -125,7 +126,8 @@ function Calendar({
         p={3}
         fontWeight="semibold"
       >
-        {iteration / gridColumns + recCenterOpenTime}:00
+        {militaryTime <= 12 ? militaryTime : militaryTime - 12}
+        :00{militaryTime < 12 ? " AM" : " PM"}
       </GridItem>
     );
   }
@@ -195,6 +197,7 @@ function Calendar({
       recCenterName: displayRecCenter.name,
     };
     handleCalendarSelection(currentCalendarSelection);
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   return (
