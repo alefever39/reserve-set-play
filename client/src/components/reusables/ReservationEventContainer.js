@@ -3,7 +3,7 @@ import AdminReservation from "../admin/AdminReservation";
 import EditReservation from "../player/EditReservation";
 import NewReservation from "../player/NewReservation";
 
-function ReservationEventContainer() {
+function ReservationEventContainer({ handleNewReservation }) {
   return (
     <div>
       <Switch>
@@ -11,7 +11,7 @@ function ReservationEventContainer() {
           <EditReservation />
         </Route>
         <Route path="/home">
-          <NewReservation />
+          <NewReservation handleNewReservation={handleNewReservation} />
         </Route>
         <Route path="/admin/">
           <AdminReservation />

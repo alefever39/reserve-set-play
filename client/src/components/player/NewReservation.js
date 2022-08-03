@@ -1,6 +1,17 @@
 import { Box } from "@chakra-ui/react";
-function NewReservation() {
-  return <Box as="button"> Reserve Space</Box>;
+function NewReservation({ handleNewReservation }) {
+  return (
+    <Box
+      as="button"
+      onClick={handleNewReservation}
+      border="2px"
+      borderRadius="md"
+      p="4px"
+    >
+      {" "}
+      Reserve Space
+    </Box>
+  );
 }
 
 export default NewReservation;

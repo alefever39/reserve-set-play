@@ -12,7 +12,8 @@ function EveryoneContainer({
   setUser,
 }) {
   let today = new Date();
-  const day = String(today.getDate()).padStart(2, "0");
+
+  const day = String(today.getDate() + 1).padStart(2, "0");
   const month = String(today.getMonth() + 1).padStart(2, "0");
   const year = today.getFullYear();
   today = year + "-" + month + "-" + day;
@@ -38,6 +39,10 @@ function EveryoneContainer({
         .then((r) => r.json())
         .then((resourceData) => setDisplayResources(resourceData));
     }
+
+    return function cleanup() {
+      return null;
+    };
   }, [displayRecCenter]);
 
   function handleCalendarSelection(currentCalendarSelection) {
@@ -48,7 +53,7 @@ function EveryoneContainer({
     <div>
       <RecCenterCarousel recCenters={recCenters} />
       <DateCarousel />
-      {displayRecCenter ? (
+      {displayRecCenter && displayResources.length !== 0 ? (
         <Calendar
           displayDate={displayDate}
           displayRecCenter={displayRecCenter}
