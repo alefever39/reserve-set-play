@@ -17,7 +17,7 @@ function PlayerContainer({
   } else {
     history.push("/");
   }
-
+  
   return (
     <div>
       <Switch>

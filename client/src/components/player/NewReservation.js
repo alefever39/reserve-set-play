@@ -1,9 +1,6 @@
+import { Box } from "@chakra-ui/react";
 function NewReservation() {
-  return (
-    <div>
-      <h3>NewReservation</h3>
-    </div>
-  );
+  return <Box as="button"> Reserve Space</Box>;
 }
 
 export default NewReservation;

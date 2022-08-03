@@ -1,4 +1,4 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Box, Heading } from "@chakra-ui/react";
 import RecCenterCard from "../reusables/RecCenterCard";
 
 function RecCenters({recCenters}) {
@@ -9,9 +9,12 @@ function RecCenters({recCenters}) {
     />
 ))
   return (
-    <SimpleGrid minChildWidth='340px' spacing='40px'>
-      {recCenterCollection}
-    </SimpleGrid>
+    <Box>
+      <Heading as='h1' m="15px">Manage My Rec Centers</Heading>
+      <SimpleGrid minChildWidth='320px' spacing='10px' mx="15px">
+        {recCenterCollection}
+      </SimpleGrid>
+    </Box>
   );
 }
 
