@@ -9,10 +9,18 @@ function InformationContainer({ loginModalOpen, setLoginModalOpen, setUser }) {
   const [recCenters, setRecCenters] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/rec_centers`)
+    console.log("useEffect called");
+    fetch(`http://localhost:3000/rec_centers`, {
+      method: "GET",
+      credentials: "include",
+    })
       .then((res) => res.json())
-      .then((data) => setRecCenters(data));
+      .then((data) => {
+        console.log("info container fetch", data);
+        setRecCenters(data);
+      });
   }, []);
+
   return (
     <Switch>
       <Route path="/admin">
@@ -23,7 +31,7 @@ function InformationContainer({ loginModalOpen, setLoginModalOpen, setUser }) {
         />
       </Route>
       <Route path="/home">
-        <PlayerContainer />
+        <PlayerContainer recCenters={recCenters} />
       </Route>
       {/* <Route path="/login">{onLoginPath}</Route> */}
       <Route path="/">

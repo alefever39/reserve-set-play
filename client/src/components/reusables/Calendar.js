@@ -1,41 +1,61 @@
 import { Grid, GridItem } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
-function Calendar() {
-  const date = "5/8/2022";
-  const recCenterOpen = 5;
-  const recCenterClose = 8;
-  const resources = [
-    { id: "1", name: "Court 1" },
-    { id: "2", name: "Court 2" },
-    { id: "3", name: "Court 3" },
-    { id: "4", name: "Field 1" },
-    { id: "5", name: "Field 2" },
-  ];
-  const reservationCalendarIds = [
-    "calendarId:7",
-    "calendarId:8",
-    "calendarId:9",
-    "calendarId:10",
-    "calendarId:11",
-    "calendarId:14",
-    "calendarId:23",
-  ];
-  const numOfResources = resources.length;
+function Calendar({
+  displayDate,
+  displayRecCenter,
+  displayResources,
+  handleCalendarSelection,
+}) {
+  const [existingCalendarIds, setExistingCalendarIds] = useState([]);
+
+  const recCenterOpenDateTime = new Date(displayRecCenter.opens_at);
+  const recCenterCloseDateTime = new Date(displayRecCenter.closes_at);
+  const recCenterOpenTime = recCenterOpenDateTime.getUTCHours();
+  const recCenterCloseTime = recCenterCloseDateTime.getUTCHours();
+  const recCenterHours = recCenterCloseTime - recCenterOpenTime;
+  const numOfResources = displayResources.length;
   const gridColumns = numOfResources + 1;
-  const recCenterHours = recCenterClose - recCenterOpen;
-
   const dynamicGridTemplate = createDynamicGridTemplate();
   const dynamicColumns = `80px repeat(${numOfResources}, 1fr)`;
   const dynamicRows = `repeat(${recCenterHours + 1}, 1fr})`;
+
+  useEffect(() => {
+    fetch(
+      `http://localhost:3000/admin/rec_centers/${displayRecCenter.id}/reservations/${displayDate}`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    )
+      .then((r) => r.json())
+      .then((reservations) => {
+        const reservationCalendarIds = reservations.map((reservation) => {
+          const reservationStartDateTime = new Date(reservation.datetime_start);
+          const recOpenDateTime = new Date(displayRecCenter.opens_at);
+          const recOpenTime = recOpenDateTime.getUTCHours();
+          const reservationStartTime = reservationStartDateTime.getUTCHours();
+          const hoursFromOpenTime = reservationStartTime - recOpenTime;
+          const resourceIndex = reservation.resource.id;
+          const calendarId =
+            (hoursFromOpenTime + 1) * gridColumns + resourceIndex;
+          return `calendarId:${calendarId}`;
+        });
+        setExistingCalendarIds(reservationCalendarIds);
+      });
+  }, []);
+
   const calendarTopRow = [];
   const calendarBody = [];
 
+  // calendar top row
   calendarTopRow.push(formatSquare());
 
-  resources.forEach((resource) =>
+  displayResources.forEach((resource) =>
     calendarTopRow.push(resourceSquare(resource))
   );
 
+  // calendar body
   for (let i = 0; i < recCenterHours * gridColumns; i++) {
     const calendarId = i + gridColumns;
     if (calendarId % gridColumns === 0) {
@@ -64,7 +84,15 @@ function Calendar() {
   }
 
   function formatSquare() {
-    return <GridItem key="format" bg="white" area={"calendarId:0"}></GridItem>;
+    return (
+      <GridItem
+        key="format"
+        bg="white"
+        area={"calendarId:0"}
+        // position="fixed"
+        // zIndex={2}
+      ></GridItem>
+    );
   }
 
   function resourceSquare(resource) {
@@ -77,6 +105,8 @@ function Calendar() {
         boxShadow="md"
         p={2}
         fontWeight="semibold"
+        // position="fixed"
+        // zIndex={2}
       >
         {resource.name}
       </GridItem>
@@ -94,13 +124,13 @@ function Calendar() {
         p={3}
         fontWeight="semibold"
       >
-        {iteration / gridColumns + recCenterOpen}:00
+        {iteration / gridColumns + recCenterOpenTime}:00
       </GridItem>
     );
   }
 
   function calendarSquare(calendarId) {
-    const reservedSquare = reservationCalendarIds.includes(
+    const reservedSquare = existingCalendarIds.includes(
       `calendarId:${calendarId}`
     );
     if (reservedSquare) {
@@ -122,8 +152,8 @@ function Calendar() {
         p={3}
         fontWeight="semibold"
         boxShadow="md"
-        data-date={date}
-        data-time={Math.floor(calendarId / gridColumns) - 1 + recCenterOpen}
+        data-date={displayDate}
+        data-time={Math.floor(calendarId / gridColumns) - 1 + recCenterOpenTime}
         data-resource-index={(calendarId % gridColumns) - 1}
       >
         Unavailable
@@ -142,9 +172,10 @@ function Calendar() {
         boxShadow="md"
         as="button"
         _hover={{ background: "green.400" }}
+        _focus={{ background: "green.600" }}
         onClick={handleClick}
-        data-date={date}
-        data-time={Math.floor(calendarId / gridColumns) - 1 + recCenterOpen}
+        data-date={displayDate}
+        data-time={Math.floor(calendarId / gridColumns) - 1 + recCenterOpenTime}
         data-resource-index={(calendarId % gridColumns) - 1}
       ></GridItem>
     );
@@ -152,11 +183,17 @@ function Calendar() {
 
   function handleClick(e) {
     e.preventDefault();
-    console.log(e);
-    console.log(e.target.dataset.date);
-    console.log(e.target.dataset.time);
-    console.log(e.target.dataset.resourceIndex);
-    console.log(resources[e.target.dataset.resourceIndex]);
+
+    const currentCalendarSelection = {
+      date: e.target.dataset.date,
+      time: e.target.dataset.time,
+      resourceId: displayResources[e.target.dataset.resourceIndex].id,
+      resourceName: displayResources[e.target.dataset.resourceIndex].name,
+      bookingTypeId: 1,
+      recCenterId: displayRecCenter.id,
+      recCenterName: displayRecCenter.name,
+    };
+    handleCalendarSelection(currentCalendarSelection);
   }
 
   return (

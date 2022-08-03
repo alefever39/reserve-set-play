@@ -2,7 +2,8 @@ import SpaceContainer from "../reusables/SpaceContainer";
 import { Route, Switch } from "react-router-dom";
 import Reservations from "./Reservations";
 
-function PlayerContainer() {
+function PlayerContainer({ recCenters }) {
+  console.log("player recCenters", recCenters);
   return (
     <div>
       <Switch>
@@ -10,7 +11,7 @@ function PlayerContainer() {
           <Reservations />
         </Route>
         <Route path="/home">
-          <SpaceContainer />
+          <SpaceContainer recCenters={recCenters} />
         </Route>
       </Switch>
     </div>

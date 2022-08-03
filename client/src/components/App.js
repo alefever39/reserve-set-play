@@ -2,6 +2,7 @@ import Header from "./everyone/Header";
 import InformationContainer from "./InformationContainer";
 import "../App.css";
 import { useState, useEffect } from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 
 function App() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);

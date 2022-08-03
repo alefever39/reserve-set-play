@@ -9,6 +9,7 @@ function EveryoneContainer({
   setLoginModalOpen,
   setUser,
 }) {
+  console.log("recCenters", recCenters);
   return (
     <div>
       <RecCenterCarousel recCenters={recCenters} />
