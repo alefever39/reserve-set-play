@@ -42,6 +42,7 @@ function SpaceContainer({ recCenters }) {
   return (
     <div>
       <RecCenterCarousel recCenters={recCenters} />
+      <br />
       <DateCarousel />
       {displayRecCenter ? (
         <Calendar

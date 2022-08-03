@@ -47,6 +47,7 @@ function EveryoneContainer({
   return (
     <div>
       <RecCenterCarousel recCenters={recCenters} />
+      <br />
       <DateCarousel />
       {displayRecCenter ? (
         <Calendar
