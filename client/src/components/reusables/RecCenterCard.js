@@ -18,7 +18,7 @@ function RecCenterCard({ recCenter }) {
     >
       <Flex direction="column" align="center">
         <Box w="230px">
-          <Image fit src="/map_image.png" alt="Map with location" />
+          <Image fit src="/map_image.png" alt="Map with location" width='full' height='180px'/>
         </Box>
         <br />
         <Box>
