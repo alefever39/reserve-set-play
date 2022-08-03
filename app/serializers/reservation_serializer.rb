@@ -1,5 +1,5 @@
 class ReservationSerializer < ActiveModel::Serializer
-  attributes :id, :reservation_time, :datetime_start, :datetime_end, :rec_center, :rec_center_address, 
+  attributes :id, :reservation_time, :datetime_start, :datetime_end, :rec_center, :rec_center_address
   has_one :resource
   # has_one :user
   def reservation_time
