@@ -1,4 +1,4 @@
-import { Box, Image, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Image, Flex } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 
 function RecCenterCard({ recCenter }) {

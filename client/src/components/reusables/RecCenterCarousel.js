@@ -1,10 +1,8 @@
 import RecCenterCard from "./RecCenterCard";
 import {
   Flex,
-  Spacer,
   Box,
   Button,
-  Slide,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -15,7 +13,7 @@ function RecCenterCarousel({ recCenters }) {
 
   const recCentersCards = recCenters.map((recCenter) => {
     return (
-      <Box>
+      <Box m="20px">
         <RecCenterCard key={recCenter.id} recCenter={recCenter} />
       </Box>
     );
