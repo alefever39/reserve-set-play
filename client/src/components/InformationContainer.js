@@ -3,14 +3,17 @@ import AdminContainer from "./admin/AdminContainer";
 import PlayerContainer from "./player/PlayerContainer";
 import EveryoneContainer from "./everyone/EveryoneContainer";
 import { useState, useEffect } from "react";
+import { Spinner } from "@chakra-ui/react";
 
 function InformationContainer({
   loginModalOpen,
   setLoginModalOpen,
   user,
   setUser,
+  readyToLoad,
 }) {
   const [recCenters, setRecCenters] = useState([]);
+  const [displayDate, setDisplayDate] = useState(new Date());
   const history = useHistory();
 
   useEffect(() => {
@@ -43,34 +46,51 @@ function InformationContainer({
     }
   }, [user]);
 
-
   return (
-    <Switch>
-      <Route path="/admin">
-        <AdminContainer
-          recCenters={recCenters}
-          loginModalOpen={loginModalOpen}
-          setLoginModalOpen={setLoginModalOpen}
-          user={user}
+    <>
+      {readyToLoad ? (
+        <Switch>
+          <Route path="/admin">
+            <AdminContainer
+              recCenters={recCenters}
+              loginModalOpen={loginModalOpen}
+              setLoginModalOpen={setLoginModalOpen}
+              user={user}
+              displayDate={displayDate}
+              setDisplayDate={setDisplayDate}
+            />
+          </Route>
+          <Route path="/home">
+            <PlayerContainer
+              user={user}
+              recCenters={recCenters}
+              loginModalOpen={loginModalOpen}
+              setLoginModalOpen={setLoginModalOpen}
+              displayDate={displayDate}
+              setDisplayDate={setDisplayDate}
+            />
+          </Route>
+          <Route path="/">
+            <EveryoneContainer
+              recCenters={recCenters}
+              loginModalOpen={loginModalOpen}
+              setLoginModalOpen={setLoginModalOpen}
+              setUser={setUser}
+              displayDate={displayDate}
+              setDisplayDate={setDisplayDate}
+            />
+          </Route>
+        </Switch>
+      ) : (
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
         />
-      </Route>
-      <Route path="/home">
-        <PlayerContainer
-          user={user}
-          recCenters={recCenters}
-          loginModalOpen={loginModalOpen}
-          setLoginModalOpen={setLoginModalOpen}
-        />
-      </Route>
-      <Route path="/">
-        <EveryoneContainer
-          recCenters={recCenters}
-          loginModalOpen={loginModalOpen}
-          setLoginModalOpen={setLoginModalOpen}
-          setUser={setUser}
-        />
-      </Route>
-    </Switch>
+      )}
+    </>
   );
 }
 

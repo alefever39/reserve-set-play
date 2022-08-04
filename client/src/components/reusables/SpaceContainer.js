@@ -6,19 +6,13 @@ import React, { useState, useEffect } from "react";
 import { CircularProgress } from "@chakra-ui/react";
 
 function SpaceContainer({
+  displayDate,
+  setDisplayDate,
   recCenters,
   displayReservation,
   handleCalendarSelection,
   handleNewReservation,
 }) {
-  let today = new Date();
-  const day = String(today.getDate()).padStart(2, "0");
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const year = today.getFullYear();
-  today = year + "-" + month + "-" + day;
-  console.log(today);
-
-  const [displayDate, setDisplayDate] = useState(today);
   const [displayRecCenter, setDisplayRecCenter] = useState(recCenters[0]);
   const [displayResources, setDisplayResources] = useState([]);
 
@@ -44,7 +38,7 @@ function SpaceContainer({
     <div>
       <RecCenterCarousel recCenters={recCenters} />
       <br />
-      <DateCarousel />
+      <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />
       {displayRecCenter && displayResources.length !== 0 ? (
         <Calendar
           displayDate={displayDate}

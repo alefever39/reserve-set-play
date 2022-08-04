@@ -9,6 +9,8 @@ function AdminContainer({
   loginModalOpen,
   setLoginModalOpen,
   user,
+  displayDate,
+  setDisplayDate,
 }) {
   const history = useHistory();
 
@@ -33,7 +35,11 @@ function AdminContainer({
           <Resources />
         </Route>
         <Route path="/admin">
-          <SpaceContainer recCenters={recCenters} />
+          <SpaceContainer
+            recCenters={recCenters}
+            displayDate={displayDate}
+            setDisplayDate={setDisplayDate}
+          />
         </Route>
       </Switch>
     </div>
