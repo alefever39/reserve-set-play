@@ -42,7 +42,6 @@ function Resources() {
 
   function removeResource(deletedResourceId){
     const updatedList = resources.filter((resource) => resource.id !== deletedResourceId)
-    console.log(updatedList)
     setResources(updatedList)
   }
 

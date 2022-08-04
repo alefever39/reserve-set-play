@@ -6,6 +6,8 @@ import React, { useState, useEffect } from "react";
 import { CircularProgress } from "@chakra-ui/react";
 
 function SpaceContainer({
+  displayDate,
+  setDisplayDate,
   recCenters,
   displayReservation,
   displayDate,
@@ -13,12 +15,43 @@ function SpaceContainer({
   displayResources,
   handleCalendarSelection,
   handleNewReservation,
+  displayRecCenter,
+  setDisplayRecCenter,
+  admin,
 }) {
+
+////////////////////////////////
+  const [displayResources, setDisplayResources] = useState([]);
+
+  // useEffect(() => {
+  //   setDisplayRecCenter(recCenters[0]);
+  // }, [recCenters]);
+
+  useEffect(() => {
+    if (displayRecCenter) {
+      fetch(
+        `http://127.0.0.1:3000/admin/rec_centers/${displayRecCenter.id}/resources`,
+        {
+          method: "GET",
+//          credentials: "include",
+//       }
+//      )
+//        .then((r) => r.json())
+//        .then((resourceData) => setDisplayResources(resourceData));
+//    }
+//  }, [displayRecCenter]);
+//////////////////////
+
+
   return (
     <div>
-      <RecCenterCarousel recCenters={recCenters} />
+      <RecCenterCarousel
+        recCenters={recCenters}
+        setDisplayRecCenter={setDisplayRecCenter}
+        admin={admin}
+      />
       <br />
-      <DateCarousel />
+      <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />
       {displayRecCenter && displayResources.length !== 0 ? (
         <Calendar
           displayDate={displayDate}

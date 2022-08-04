@@ -1,5 +1,6 @@
 import { Flex, Box, Heading, Button } from "@chakra-ui/react";
-function ReservationCard({ reservation, handleEdit }) {
+
+function ReservationCard({ reservation, handleEdit, removeReservation }) {
   function handleClick() {
     const reservationToEdit = {
       id: reservation.id,
@@ -15,6 +16,16 @@ function ReservationCard({ reservation, handleEdit }) {
 
     handleEdit(reservationToEdit);
   }
+
+
+
+  function handleDelete() {
+    fetch(`http://localhost:3000/reservations/${reservation.id}`, {
+      method: "DELETE",
+      credentials: "include",
+    }).then(removeReservation(reservation.id));
+  }
+
 
   return (
     <Flex
@@ -38,6 +49,15 @@ function ReservationCard({ reservation, handleEdit }) {
           {reservation.rec_center.address}
         </Box>
         <Box>
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            size="sm"
+            onClick={handleDelete}
+            m="5px"
+          >
+            Cancel
+          </Button>
           <Button colorScheme="teal" size="sm" onClick={handleClick} m="5px">
             Change
           </Button>

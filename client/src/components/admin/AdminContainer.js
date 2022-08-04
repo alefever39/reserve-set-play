@@ -9,8 +9,17 @@ function AdminContainer({
   loginModalOpen,
   setLoginModalOpen,
   user,
+  displayDate,
+  setDisplayDate,
+  displayReservation,
+  setDisplayReservation,
+  displayRecCenter,
+  setDisplayRecCenter,
+  handleNewReservation,
 }) {
   const history = useHistory();
+
+  console.log("Admin Container", displayReservation);
 
   if (user.user_type) {
     if (user.user_type.user_type !== "admin") {
@@ -18,6 +27,10 @@ function AdminContainer({
     }
   } else {
     history.push("/");
+  }
+
+  function handleCalendarSelection(currentCalendarSelection) {
+    setDisplayReservation(currentCalendarSelection);
   }
 
   return (
@@ -33,7 +46,17 @@ function AdminContainer({
           <Resources />
         </Route>
         <Route path="/admin">
-          <SpaceContainer recCenters={recCenters} />
+          <SpaceContainer
+            displayReservation={displayReservation}
+            recCenters={recCenters}
+            displayDate={displayDate}
+            setDisplayDate={setDisplayDate}
+            handleCalendarSelection={handleCalendarSelection}
+            displayRecCenter={displayRecCenter}
+            setDisplayRecCenter={setDisplayRecCenter}
+            handleNewReservation={handleNewReservation}
+            admin={true}
+          />
         </Route>
       </Switch>
     </div>

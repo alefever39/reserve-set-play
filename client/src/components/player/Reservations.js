@@ -14,12 +14,20 @@ function Reservations({ user, handleEdit }) {
   }, []);
 
   const userReservationCards = reservations.map((reservation) => (
+
     <ReservationCard
       key={reservation.id}
       reservation={reservation}
       handleEdit={handleEdit}
+      removeReservation={removeReservation}
     />
   ));
+
+
+  function removeReservation(deletedReservationId){
+    const updatedReservationsList = reservations.filter((reservation) => reservation.id!== deletedReservationId)
+    setReservations(updatedReservationsList)
+  }
 
   return (
     <Box>

@@ -7,7 +7,7 @@ import { Route, Switch, useHistory } from "react-router-dom";
 function App() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [user, setUser] = useState({});
-  console.log(user);
+  const [readyToLoad, setReadyToLoad] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3000/me", {
@@ -18,6 +18,9 @@ function App() {
       .then((data) => {
         if (!data.errors) {
           setUser(data);
+          setReadyToLoad(true);
+        } else {
+          setReadyToLoad(true);
         }
       });
   }, []);
@@ -34,6 +37,7 @@ function App() {
         setLoginModalOpen={setLoginModalOpen}
         setUser={setUser}
         user={user}
+        readyToLoad={readyToLoad}
       />
     </div>
   );

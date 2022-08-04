@@ -2,12 +2,18 @@ import SpaceContainer from "../reusables/SpaceContainer";
 import { Route, Switch, useHistory } from "react-router-dom";
 import Reservations from "./Reservations";
 import React, { useState, useEffect } from "react";
+import { buildYearMonthDay } from "../helperFunctions.js";
+
 
 function PlayerContainer({
   user,
   recCenters,
   loginModalOpen,
   setLoginModalOpen,
+  displayDate,
+  setDisplayDate,
+  displayRecCenter,
+  setDisplayRecCenter,
 }) {
   let today = new Date();
   const day = String(today.getDate()).padStart(2, "0");
@@ -52,9 +58,12 @@ function PlayerContainer({
   }
 
   function handleNewReservation() {
+    console.log(displayReservation);
     const newReservation = {
-      datetime_start: `${displayReservation.date}T${displayReservation.time}:00:00.000Z`,
-      datetime_end: `${displayReservation.date}T${
+      datetime_start: `${buildYearMonthDay(displayReservation.date)}T${
+        displayReservation.time
+      }:00:00.000Z`,
+      datetime_end: `${buildYearMonthDay(displayReservation.date)}T${
         parseInt(displayReservation.time) + 1
       }:00:00.000Z`,
       reservation_type_id: 1,
@@ -106,16 +115,21 @@ function PlayerContainer({
       <Switch>
         <Route path="/home/my_reservations">
           <Reservations user={user} handleEdit={handleEdit} />
+
         </Route>
         <Route path="/home">
           <SpaceContainer
             recCenters={recCenters}
+            displayDate={displayDate}
+            setDisplayDate={setDisplayDate}
             displayReservation={displayReservation}
             handleCalendarSelection={handleCalendarSelection}
             handleNewReservation={handleNewReservation}
             displayDate={displayDate}
             displayRecCenter={displayRecCenter}
             displayResources={displayResources}
+            setDisplayRecCenter={setDisplayRecCenter}
+            admin={false}
           />
         </Route>
       </Switch>
