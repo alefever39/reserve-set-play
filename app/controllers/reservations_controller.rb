@@ -12,10 +12,17 @@ class ReservationsController < ApplicationController
     render json: reservation, status: :created
   end
 
+  def update
+    reservation = find_reservation
+    reservation.update!(reservation_update_params)
+    render json: reservation
+  end
+
   def destroy
     reservation = Reservation.find(params[:id])
     reservation.destroy
     head :no_content
+
   end
 
   def user_reservations_index
@@ -35,4 +42,9 @@ class ReservationsController < ApplicationController
       :datetime_end
     )
   end
+
+  def find_reservation
+    Reservation.find_by!(id: params[:id])
+  end
+
 end

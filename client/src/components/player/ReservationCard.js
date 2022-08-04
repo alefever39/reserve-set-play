@@ -1,10 +1,23 @@
 import { Flex, Box, Heading, Button } from "@chakra-ui/react";
-function ReservationCard({ reservation, removeReservation }) {
+
+function ReservationCard({ reservation, handleEdit, removeReservation }) {
   function handleClick() {
-    console.log(
-      `Player wants to make a change to reservation id: ${reservation.id}`
-    );
+    const reservationToEdit = {
+      id: reservation.id,
+      date: reservation.datetime_start.substring(0, 10),
+      time: parseInt(reservation.datetime_start.substring(11, 13)),
+      datetime_start: reservation.datetime_start,
+      datetime_end: reservation.datetime_end,
+      resourceId: reservation.resource.id,
+      resourceName: reservation.resource.name,
+      bookingTypeId: 1,
+      recCenter: reservation.rec_center,
+    };
+
+    handleEdit(reservationToEdit);
   }
+
+
 
   function handleDelete() {
     fetch(`http://localhost:3000/reservations/${reservation.id}`, {
@@ -12,6 +25,7 @@ function ReservationCard({ reservation, removeReservation }) {
       credentials: "include",
     }).then(removeReservation(reservation.id));
   }
+
 
   return (
     <Flex
@@ -31,7 +45,8 @@ function ReservationCard({ reservation, removeReservation }) {
           m="2"
           textTransform="uppercase"
         >
-          Address: {reservation.rec_center}, {reservation.rec_center_address}
+          Address: {reservation.rec_center.name},{" "}
+          {reservation.rec_center.address}
         </Box>
         <Box>
           <Button

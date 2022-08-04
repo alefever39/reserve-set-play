@@ -47,8 +47,6 @@ function InformationContainer({
     }
   }, [user]);
 
-  function handleNewReservation() {}
-
   return (
     <>
       {readyToLoad ? (

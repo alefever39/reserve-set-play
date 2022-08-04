@@ -83,7 +83,7 @@ function ReservationForm({ displayReservation }) {
             color="gray.600"
             px="40px"
           >
-            {displayReservation.recCenterName} •{" "}
+            {displayReservation.recCenter.name} •{" "}
             {displayReservation.resourceName}
           </Box>
         </>

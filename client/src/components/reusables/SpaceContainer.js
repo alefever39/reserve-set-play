@@ -10,12 +10,17 @@ function SpaceContainer({
   setDisplayDate,
   recCenters,
   displayReservation,
+  displayDate,
+  displayRecCenter,
+  displayResources,
   handleCalendarSelection,
   handleNewReservation,
   displayRecCenter,
   setDisplayRecCenter,
   admin,
 }) {
+
+////////////////////////////////
   const [displayResources, setDisplayResources] = useState([]);
 
   // useEffect(() => {
@@ -28,13 +33,15 @@ function SpaceContainer({
         `http://127.0.0.1:3000/admin/rec_centers/${displayRecCenter.id}/resources`,
         {
           method: "GET",
-          credentials: "include",
-        }
-      )
-        .then((r) => r.json())
-        .then((resourceData) => setDisplayResources(resourceData));
-    }
-  }, [displayRecCenter]);
+//          credentials: "include",
+//       }
+//      )
+//        .then((r) => r.json())
+//        .then((resourceData) => setDisplayResources(resourceData));
+//    }
+//  }, [displayRecCenter]);
+//////////////////////
+
 
   return (
     <div>
