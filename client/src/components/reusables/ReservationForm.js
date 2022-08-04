@@ -18,12 +18,7 @@ function ReservationForm({ displayReservation }) {
   let displayDate = "";
 
   if (displayReservation !== "") {
-    console.log(displayReservation);
-
     date = new Date(displayReservation.date);
-
-    console.log(date);
-
     dayOfTheWeek = weekday[date.getDay()];
     day = String(date.getDate()).padStart(2, "0");
     month = String(date.getMonth() + 1).padStart(2, "0");

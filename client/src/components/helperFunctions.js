@@ -17,7 +17,7 @@ export function buildYearMonthDay(date = new Date()) {
   return `${newDate.getFullYear()}-${String(newDate.getMonth() + 1).padStart(
     2,
     "0"
-  )}-${String(newDate.getDay()).padStart(2, "0")}`;
+  )}-${String(newDate.getDate()).padStart(2, "0")}`;
 }
 
 export function buildDayOfWeekMonthDay(date = new Date()) {

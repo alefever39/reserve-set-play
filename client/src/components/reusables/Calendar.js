@@ -35,7 +35,6 @@ function Calendar({
       .then((r) => r.json())
       .then((reservations) => {
         const reservationCalendarIds = reservations.map((reservation) => {
-          console.log(reservation);
           const reservationStartDateTime = new Date(reservation.datetime_start);
           const recOpenDateTime = new Date(displayRecCenter.opens_at);
           const recOpenTime = recOpenDateTime.getUTCHours();
@@ -49,7 +48,7 @@ function Calendar({
         setExistingCalendarIds(reservationCalendarIds);
         setReadyToLoad(true);
       });
-  }, [displayDate]);
+  }, [displayDate, displayRecCenter]);
 
   const calendarTopRow = [];
   const calendarBody = [];

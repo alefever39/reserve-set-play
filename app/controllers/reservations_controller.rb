@@ -24,9 +24,15 @@ class ReservationsController < ApplicationController
     render json: reservations
   end
 
- private
+  private
 
   def reservation_params
-    params.permit( :reservation_type_id, :resource_id, :user_id, :datetime_start, :datetime_end)
+    params.permit(
+      :reservation_type_id,
+      :resource_id,
+      :user_id,
+      :datetime_start,
+      :datetime_end
+    )
   end
 end

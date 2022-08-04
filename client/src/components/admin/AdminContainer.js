@@ -13,6 +13,9 @@ function AdminContainer({
   setDisplayDate,
   displayReservation,
   setDisplayReservation,
+  displayRecCenter,
+  setDisplayRecCenter,
+  handleNewReservation,
 }) {
   const history = useHistory();
 
@@ -49,6 +52,10 @@ function AdminContainer({
             displayDate={displayDate}
             setDisplayDate={setDisplayDate}
             handleCalendarSelection={handleCalendarSelection}
+            displayRecCenter={displayRecCenter}
+            setDisplayRecCenter={setDisplayRecCenter}
+            handleNewReservation={handleNewReservation}
+            admin={true}
           />
         </Route>
       </Switch>
