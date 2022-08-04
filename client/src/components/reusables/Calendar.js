@@ -8,9 +8,6 @@ function Calendar({
   displayResources,
   handleCalendarSelection,
 }) {
-  console.log("date", displayDate);
-  console.log("rec", displayRecCenter);
-  console.log("resource", displayResources);
   const [existingCalendarIds, setExistingCalendarIds] = useState([]);
   const [readyToLoad, setReadyToLoad] = useState(false);
   const recCenterOpenDateTime = new Date(displayRecCenter.opens_at);
@@ -43,18 +40,6 @@ function Calendar({
           const reservationStartTime = reservationStartDateTime.getUTCHours();
           const hoursFromOpenTime = reservationStartTime - recOpenTime;
           const resourceIndex = reservation.resource.id;
-          console.log(
-            "open",
-            hoursFromOpenTime,
-            "start",
-            reservationStartTime,
-            "rec open",
-            recOpenTime,
-            "gridcolumns",
-            gridColumns,
-            "resourceindex",
-            resourceIndex
-          );
           const calendarId =
             (hoursFromOpenTime + 1) * gridColumns + resourceIndex;
           return `calendarId:${calendarId}`;

@@ -16,6 +16,7 @@ function AdminContainer({
   displayRecCenter,
   setDisplayRecCenter,
   handleNewReservation,
+  displayResources,
 }) {
   const history = useHistory();
 
@@ -55,6 +56,7 @@ function AdminContainer({
             displayRecCenter={displayRecCenter}
             setDisplayRecCenter={setDisplayRecCenter}
             handleNewReservation={handleNewReservation}
+            displayResources={displayResources}
             admin={true}
           />
         </Route>
