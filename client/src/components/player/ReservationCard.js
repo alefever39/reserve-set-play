@@ -1,5 +1,5 @@
 import { Flex, Box, Heading, Button } from '@chakra-ui/react'
-function ReservationCard({reservation}) {
+function ReservationCard({reservation, removeReservation}) {
   console.log(reservation)
 
   function handleClick(){
@@ -7,7 +7,11 @@ function ReservationCard({reservation}) {
   }
 
   function handleDelete(){
-    console.log(`Player wants to cancel reservation id: ${reservation.id}`)
+    fetch(`http://localhost:3000/reservations/${reservation.id}`, {
+      method: "DELETE",
+      credentials: 'include'
+    })
+    .then(removeReservation(reservation.id))
   }
 
   return (

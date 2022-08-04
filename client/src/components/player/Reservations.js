@@ -14,8 +14,13 @@ const [reservations, setReservations] = useState([])
       }, [])
 
   const userReservationCards = reservations.map((reservation) => (
-    <ReservationCard key={reservation.id} reservation={reservation}/>
+    <ReservationCard key={reservation.id} reservation={reservation} removeReservation={removeReservation}/>
   ))
+
+  function removeReservation(deletedReservationId){
+    const updatedReservationsList = reservations.filter((reservation) => reservation.id!== deletedReservationId)
+    setReservations(updatedReservationsList)
+  }
 
   return (
     <Box>
