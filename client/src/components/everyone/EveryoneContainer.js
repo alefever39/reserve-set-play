@@ -13,8 +13,10 @@ function EveryoneContainer({
   displayDate,
   setDisplayDate,
   setDisplayReservation,
+  displayRecCenter,
+  setDisplayRecCenter,
+  handleNewReservation,
 }) {
-  const [displayRecCenter, setDisplayRecCenter] = useState(recCenters[0]);
   const [displayResources, setDisplayResources] = useState([]);
 
   useEffect(() => {
@@ -45,7 +47,10 @@ function EveryoneContainer({
 
   return (
     <div>
-      <RecCenterCarousel recCenters={recCenters} />
+      <RecCenterCarousel
+        recCenters={recCenters}
+        setDisplayRecCenter={setDisplayRecCenter}
+      />
       <br />
       <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />
       {displayRecCenter && displayResources.length !== 0 ? (

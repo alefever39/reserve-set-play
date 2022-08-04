@@ -12,15 +12,14 @@ function SpaceContainer({
   displayReservation,
   handleCalendarSelection,
   handleNewReservation,
+  displayRecCenter,
+  setDisplayRecCenter,
 }) {
-  const [displayRecCenter, setDisplayRecCenter] = useState(recCenters[0]);
   const [displayResources, setDisplayResources] = useState([]);
 
-  console.log("Space Container", displayReservation);
-
-  useEffect(() => {
-    setDisplayRecCenter(recCenters[0]);
-  }, [recCenters]);
+  // useEffect(() => {
+  //   setDisplayRecCenter(recCenters[0]);
+  // }, [recCenters]);
 
   useEffect(() => {
     if (displayRecCenter) {
@@ -38,7 +37,10 @@ function SpaceContainer({
 
   return (
     <div>
-      <RecCenterCarousel recCenters={recCenters} />
+      <RecCenterCarousel
+        recCenters={recCenters}
+        setDisplayRecCenter={setDisplayRecCenter}
+      />
       <br />
       <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />
       {displayRecCenter && displayResources.length !== 0 ? (

@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   ### add "skip_before_action :authorize, only: [:the :different :methods]" if a path does not need/shouldn't have user authentication
-  skip_before_action :authorize, only: [:index]
+  skip_before_action :authorize, only: %i[index create]
 
   ############################### /reservations
   def index
@@ -24,9 +24,15 @@ class ReservationsController < ApplicationController
     render json: reservations
   end
 
- private
+  private
 
   def reservation_params
-    params.permit( :reservation_type_id, :resource_id, :user_id, :datetime_start, :datetime_end)
+    params.permit(
+      :reservation_type_id,
+      :resource_id,
+      :user_id,
+      :datetime_start,
+      :datetime_end
+    )
   end
 end

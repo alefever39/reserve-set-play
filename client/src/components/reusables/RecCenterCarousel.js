@@ -1,13 +1,8 @@
 import RecCenterCard from "./RecCenterCard";
-import {
-  Flex,
-  Box,
-  Button,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 
-function RecCenterCarousel({ recCenters }) {
+function RecCenterCarousel({ recCenters, setDisplayRecCenter }) {
   const [displayedCard, setDisplayedCard] = useState(0);
   const { isOpen, onToggle } = useDisclosure();
 
@@ -22,13 +17,16 @@ function RecCenterCarousel({ recCenters }) {
   function handleLeftClick() {
     if (displayedCard > 0) {
       setDisplayedCard(displayedCard - 1);
+      setDisplayRecCenter(recCenters[displayedCard - 1]);
     } else {
       setDisplayedCard(recCenters.length - 1);
+      setDisplayRecCenter(recCenters[recCenters.length - 1]);
     }
   }
 
   function handleRightClick() {
     setDisplayedCard((displayedCard + 1) % recCenters.length);
+    setDisplayRecCenter(recCenters[(displayedCard + 1) % recCenters.length]);
   }
 
   function showBorder(e) {
@@ -42,13 +40,27 @@ function RecCenterCarousel({ recCenters }) {
   const indicators = recCenters.map((recCenter, i) => {
     if (i === displayedCard) {
       return (
-        <Button key={i} onClick={() => setDisplayedCard(i)} variant="link">
+        <Button
+          key={i}
+          onClick={() => {
+            setDisplayedCard(i);
+            setDisplayRecCenter(recCenters[i]);
+          }}
+          variant="link"
+        >
           ◈
         </Button>
       );
     } else {
       return (
-        <Button key={i} onClick={() => setDisplayedCard(i)} variant="link">
+        <Button
+          key={i}
+          onClick={() => {
+            setDisplayedCard(i);
+            setDisplayRecCenter(recCenters[i]);
+          }}
+          variant="link"
+        >
           ◇
         </Button>
       );

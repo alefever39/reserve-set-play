@@ -15,18 +15,18 @@ function InformationContainer({
   const [recCenters, setRecCenters] = useState([]);
   const [displayDate, setDisplayDate] = useState(new Date());
   const [displayReservation, setDisplayReservation] = useState({});
+  const [displayRecCenter, setDisplayRecCenter] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
-    console.log("useEffect called");
     fetch(`http://localhost:3000/rec_centers`, {
       method: "GET",
       credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("info container fetch", data);
         setRecCenters(data);
+        setDisplayRecCenter(data[0]);
       });
   }, []);
 
@@ -47,6 +47,8 @@ function InformationContainer({
     }
   }, [user]);
 
+  function handleNewReservation() {}
+
   return (
     <>
       {readyToLoad ? (
@@ -61,6 +63,9 @@ function InformationContainer({
               setDisplayDate={setDisplayDate}
               displayReservation={displayReservation}
               setDisplayReservation={setDisplayReservation}
+              displayRecCenter={displayRecCenter}
+              setDisplayRecCenter={setDisplayRecCenter}
+              handleNewReservation={handleNewReservation}
             />
           </Route>
           <Route path="/home">
@@ -73,6 +78,9 @@ function InformationContainer({
               setDisplayDate={setDisplayDate}
               displayReservation={displayReservation}
               setDisplayReservation={setDisplayReservation}
+              displayRecCenter={displayRecCenter}
+              setDisplayRecCenter={setDisplayRecCenter}
+              handleNewReservation={handleNewReservation}
             />
           </Route>
           <Route path="/">
@@ -84,6 +92,9 @@ function InformationContainer({
               displayDate={displayDate}
               setDisplayDate={setDisplayDate}
               setDisplayReservation={setDisplayReservation}
+              displayRecCenter={displayRecCenter}
+              setDisplayRecCenter={setDisplayRecCenter}
+              handleNewReservation={handleNewReservation}
             />
           </Route>
         </Switch>

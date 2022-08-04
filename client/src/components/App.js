@@ -8,7 +8,6 @@ function App() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [user, setUser] = useState({});
   const [readyToLoad, setReadyToLoad] = useState(false);
-  console.log(user);
 
   useEffect(() => {
     fetch("http://localhost:3000/me", {

@@ -10,6 +10,8 @@ function PlayerContainer({
   setLoginModalOpen,
   displayDate,
   setDisplayDate,
+  displayRecCenter,
+  setDisplayRecCenter,
 }) {
   const [displayReservation, setDisplayReservation] = useState("");
   const history = useHistory();
@@ -53,7 +55,7 @@ function PlayerContainer({
     <div>
       <Switch>
         <Route path="/home/my_reservations">
-          <Reservations user={user}/>
+          <Reservations user={user} />
         </Route>
         <Route path="/home">
           <SpaceContainer
@@ -63,6 +65,8 @@ function PlayerContainer({
             displayReservation={displayReservation}
             handleCalendarSelection={handleCalendarSelection}
             handleNewReservation={handleNewReservation}
+            displayRecCenter={displayRecCenter}
+            setDisplayRecCenter={setDisplayRecCenter}
           />
         </Route>
       </Switch>
