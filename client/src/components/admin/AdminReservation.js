@@ -1,8 +1,10 @@
-function AdminReservation() {
+import { Box, Button } from "@chakra-ui/react";
+
+function AdminReservation({handleAdminReservation}) {
   return (
-    <div>
-      <h3>AdminReservation</h3>
-    </div>
+    <Box>
+        <Button colorScheme='teal' variant='solid' onClick={handleAdminReservation}>Create block</Button>
+    </Box>
   );
 }
 
