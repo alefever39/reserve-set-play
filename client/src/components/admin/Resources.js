@@ -42,7 +42,6 @@ function Resources() {
 
   function removeResource(deletedResourceId){
     const updatedList = resources.filter((resource) => resource.id !== deletedResourceId)
-    console.log(updatedList)
     setResources(updatedList)
   }
 
@@ -65,7 +64,6 @@ function Resources() {
     <Box>
       <Flex h='100px' justifyContent="space-between" alignItems="center" mx="15px">
         <Heading as='h1'>Resources at {recCenter.name}</Heading>
-        {/* <Spacer /> */}
         <Button onClick={handleCreateOpen}>Add new resource</Button>
       </Flex>
       <Box>

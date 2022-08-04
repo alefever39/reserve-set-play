@@ -33,6 +33,10 @@ function EveryoneContainer({
         .then((r) => r.json())
         .then((resourceData) => setDisplayResources(resourceData));
     }
+
+    return function cleanup() {
+      return null;
+    };
   }, [displayRecCenter]);
 
   function handleCalendarSelection(currentCalendarSelection) {
@@ -44,7 +48,7 @@ function EveryoneContainer({
       <RecCenterCarousel recCenters={recCenters} />
       <br />
       <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />
-      {displayRecCenter ? (
+      {displayRecCenter && displayResources.length !== 0 ? (
         <Calendar
           displayDate={displayDate}
           setDisplayDate={setDisplayDate}

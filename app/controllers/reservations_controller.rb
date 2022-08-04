@@ -6,4 +6,27 @@ class ReservationsController < ApplicationController
   def index
     render json: Reservation.all
   end
+
+  def create
+    reservation = Reservation.create!(reservation_params)
+    render json: reservation, status: :created
+  end
+
+  def destroy
+    reservation = Reservation.find(params[:id])
+    reservation.destroy
+    head :no_content
+  end
+
+  def user_reservations_index
+    user = User.find(params[:id])
+    reservations = Reservation.where(user_id: user.id)
+    render json: reservations
+  end
+
+ private
+
+  def reservation_params
+    params.permit( :reservation_type_id, :resource_id, :user_id, :datetime_start, :datetime_end)
+  end
 end
