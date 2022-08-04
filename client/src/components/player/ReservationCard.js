@@ -6,6 +6,10 @@ function ReservationCard({reservation}) {
     console.log(`Player wants to make a change to reservation id: ${reservation.id}`)
   }
 
+  function handleDelete(){
+    console.log(`Player wants to cancel reservation id: ${reservation.id}`)
+  }
+
   return (
     <Flex maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' justifyContent="space-around">
       <Box fontWeight='semibold' m="10px">
@@ -21,6 +25,7 @@ function ReservationCard({reservation}) {
          Address: {reservation.rec_center}, {reservation.rec_center_address}
         </Box>
         <Box>
+          <Button colorScheme='teal' variant='outline' size='sm' onClick={handleDelete} m="5px">Cancel</Button>
           <Button colorScheme='teal' size='sm' onClick={handleClick} m="5px">Change</Button>
         </Box>
       </Box>   
