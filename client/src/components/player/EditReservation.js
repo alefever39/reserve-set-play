@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/react";
-function EditReservation() {
+function EditReservation({ handleUpdate }) {
   return (
     <>
       <Box
         as="button"
-        // onClick={handleNewReservation}
+        onClick={handleUpdate}
         background="teal.300"
         borderRadius="2xl"
         px="30px"

@@ -14,8 +14,10 @@ function PlayerContainer({
   displayRecCenter,
   setDisplayRecCenter,
   displayResources,
+  reservations,
 }) {
   const [displayReservation, setDisplayReservation] = useState("");
+  const [editReservationId, setEditReservationId] = useState(null);
   const history = useHistory();
 
   if (user.user_type) {
@@ -31,7 +33,6 @@ function PlayerContainer({
   }
 
   function handleNewReservation() {
-    console.log(displayReservation);
     const newReservation = {
       datetime_start: `${buildYearMonthDay(displayReservation.date)}T${
         displayReservation.time
@@ -58,36 +59,42 @@ function PlayerContainer({
   }
 
   function handleEdit(edittedReservation) {
-    console.log(edittedReservation);
+    console.log("player container", edittedReservation.recCenter);
     setDisplayReservation(edittedReservation);
     setDisplayDate(edittedReservation.date);
     setDisplayRecCenter(edittedReservation.recCenter);
+    setEditReservationId(edittedReservation.id);
     history.push("/home/edit_reservation");
   }
 
-  // function handleSave() {
-  //   const reservation = {
-  //     reservation_type_id: edittedReservation.bookingTypeId,
-  //     resource_id: edittedReservation.resourceId,
-  //     user_id: edittedReservation.userId,
-  //     datetime_start: edittedReservation.datetime_start,
-  //     datetime_end: edittedReservation.datetime_end,
-  //   };
-  //   fetch(`http://127.0.0.1:3000/reservations/${edittedReservation.id}`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     credentials: "include",
-  //     body: JSON.stringify(reservation),
-  //   }).then(() => {
-  // }
+  function handleUpdate() {
+    console.log(displayReservation);
+    const updatedReservation = {
+      reservation_type_id: displayReservation.bookingTypeId,
+      resource_id: displayReservation.resourceId,
+      user_id: displayReservation.userId,
+      datetime_start: displayReservation.datetime_start,
+      datetime_end: displayReservation.datetime_end,
+    };
+    fetch(`http://127.0.0.1:3000/reservations/${editReservationId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(updatedReservation),
+    }).then(history.push("/home/my_reservations"));
+  }
 
   return (
     <div>
       <Switch>
         <Route path="/home/my_reservations">
-          <Reservations user={user} handleEdit={handleEdit} />
+          <Reservations
+            user={user}
+            handleEdit={handleEdit}
+            reservations={reservations}
+          />
         </Route>
         <Route path="/home">
           <SpaceContainer
@@ -101,6 +108,7 @@ function PlayerContainer({
             displayResources={displayResources}
             setDisplayRecCenter={setDisplayRecCenter}
             admin={false}
+            handleUpdate={handleUpdate}
           />
         </Route>
       </Switch>

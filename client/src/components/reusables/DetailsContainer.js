@@ -2,7 +2,13 @@ import { HStack } from "@chakra-ui/react";
 import ReservationEventContainer from "./ReservationEventContainer";
 import ReservationForm from "./ReservationForm";
 
-function DetailsContainer({ displayReservation, handleNewReservation, handleAdminReservation }) {
+
+function DetailsContainer({
+  displayReservation,
+  handleNewReservation,
+  handleAdminReservation,
+  handleUpdate,
+}) {
   return (
     <HStack
       display="flex"
@@ -12,7 +18,13 @@ function DetailsContainer({ displayReservation, handleNewReservation, handleAdmi
       my="20px"
     >
       <ReservationForm displayReservation={displayReservation} />
-      <ReservationEventContainer handleNewReservation={handleNewReservation} handleAdminReservation={handleAdminReservation}/>
+
+      <ReservationEventContainer
+        handleNewReservation={handleNewReservation}
+        handleUpdate={handleUpdate}
+        handleAdminReservation={handleAdminReservation}
+      />
+
     </HStack>
   );
 }

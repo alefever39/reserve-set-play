@@ -65,7 +65,14 @@ function ReservationForm({ displayReservation }) {
           >
             {dayOfTheWeek}, {displayDate}
             {"  "}•{"  "}
-            {displayReservation.time}:00
+            {displayReservation.time < 13
+              ? displayReservation.time
+              : displayReservation.time - 12}
+            :00 {displayReservation.time < 12 ? "AM" : "PM"} -{" "}
+            {displayReservation.time + 1 < 13
+              ? displayReservation.time + 1
+              : displayReservation.time - 11}
+            :00 {displayReservation.time + 1 < 12 ? "AM" : "PM"}
           </Box>
           <Box
             fontWeight="bold"
