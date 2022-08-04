@@ -14,6 +14,7 @@ function InformationContainer({
 }) {
   const [recCenters, setRecCenters] = useState([]);
   const [displayDate, setDisplayDate] = useState(new Date());
+  const [displayReservation, setDisplayReservation] = useState({});
   const history = useHistory();
 
   useEffect(() => {
@@ -58,6 +59,8 @@ function InformationContainer({
               user={user}
               displayDate={displayDate}
               setDisplayDate={setDisplayDate}
+              displayReservation={displayReservation}
+              setDisplayReservation={setDisplayReservation}
             />
           </Route>
           <Route path="/home">
@@ -68,6 +71,8 @@ function InformationContainer({
               setLoginModalOpen={setLoginModalOpen}
               displayDate={displayDate}
               setDisplayDate={setDisplayDate}
+              displayReservation={displayReservation}
+              setDisplayReservation={setDisplayReservation}
             />
           </Route>
           <Route path="/">
@@ -78,6 +83,7 @@ function InformationContainer({
               setUser={setUser}
               displayDate={displayDate}
               setDisplayDate={setDisplayDate}
+              setDisplayReservation={setDisplayReservation}
             />
           </Route>
         </Switch>

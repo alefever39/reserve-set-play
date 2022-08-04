@@ -16,6 +16,8 @@ function SpaceContainer({
   const [displayRecCenter, setDisplayRecCenter] = useState(recCenters[0]);
   const [displayResources, setDisplayResources] = useState([]);
 
+  console.log("Space Container", displayReservation);
+
   useEffect(() => {
     setDisplayRecCenter(recCenters[0]);
   }, [recCenters]);
