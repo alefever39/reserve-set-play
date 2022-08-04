@@ -3,7 +3,7 @@ class ReservationSerializer < ActiveModel::Serializer
   has_one :resource
   # has_one :user
   def reservation_time
-    "#{self.object.datetime_start.strftime("%l %P")} -#{self.object.datetime_end.strftime("%l %P")}"
+    "#{self.object.datetime_start.strftime("%a, %b %d, %l %P")} -#{self.object.datetime_end.strftime("%l %P")}"
   end
 
   def rec_center
