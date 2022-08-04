@@ -7,8 +7,10 @@ function Calendar({
   displayResources,
   handleCalendarSelection,
 }) {
+  console.log("date", displayDate);
+  console.log("rec", displayRecCenter);
+  console.log("resource", displayResources);
   const [existingCalendarIds, setExistingCalendarIds] = useState([]);
-  console.log(displayResources);
   const recCenterOpenDateTime = new Date(displayRecCenter.opens_at);
   const recCenterCloseDateTime = new Date(displayRecCenter.closes_at);
   const recCenterOpenTime = recCenterOpenDateTime.getUTCHours();
@@ -31,13 +33,24 @@ function Calendar({
       .then((r) => r.json())
       .then((reservations) => {
         const reservationCalendarIds = reservations.map((reservation) => {
-          console.log(reservation);
           const reservationStartDateTime = new Date(reservation.datetime_start);
           const recOpenDateTime = new Date(displayRecCenter.opens_at);
           const recOpenTime = recOpenDateTime.getUTCHours();
           const reservationStartTime = reservationStartDateTime.getUTCHours();
           const hoursFromOpenTime = reservationStartTime - recOpenTime;
           const resourceIndex = reservation.resource.id;
+          console.log(
+            "open",
+            hoursFromOpenTime,
+            "start",
+            reservationStartTime,
+            "rec open",
+            recOpenTime,
+            "gridcolumns",
+            gridColumns,
+            "resourceindex",
+            resourceIndex
+          );
           const calendarId =
             (hoursFromOpenTime + 1) * gridColumns + resourceIndex;
           return `calendarId:${calendarId}`;

@@ -12,7 +12,11 @@ class ReservationsController < ApplicationController
     render json: resource, status: :created
   end
 
- 
+  def update
+    reservation = find_reservation
+    reservation.update!(reservation_update_params)
+    render json: reservation
+  end
 
   def user_reservations_index
     user = User.find(params[:id])
@@ -25,4 +29,9 @@ class ReservationsController < ApplicationController
   def reservation_params
     params.permit( :reservation_type_id, :resource_id, :user_id, :datetime_start, :datetime_end)
   end
+
+  def find_reservation
+    Reservation.find_by!(id: params[:id])
+  end
+
 end
