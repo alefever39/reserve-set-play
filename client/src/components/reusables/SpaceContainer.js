@@ -16,6 +16,7 @@ function SpaceContainer({
   displayRecCenter,
   setDisplayRecCenter,
   admin,
+  handleAdminReservation
 }) {
   ////////////////////////////////
   // const [displayResources, setDisplayResources] = useState([]);
@@ -61,6 +62,7 @@ function SpaceContainer({
       <DetailsContainer
         displayReservation={displayReservation}
         handleNewReservation={handleNewReservation}
+        handleAdminReservation={handleAdminReservation}
       />
     </div>
   );

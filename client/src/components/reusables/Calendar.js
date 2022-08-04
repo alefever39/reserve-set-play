@@ -210,7 +210,6 @@ function Calendar({
     <>
       {readyToLoad ? (
         <div>
-          <h2>Calendar</h2>
           <Grid
             templateAreas={dynamicGridTemplate}
             gridTemplateColumns={dynamicColumns}
