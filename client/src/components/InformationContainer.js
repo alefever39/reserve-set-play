@@ -17,6 +17,7 @@ function InformationContainer({
   const [displayReservation, setDisplayReservation] = useState({});
   const [displayRecCenter, setDisplayRecCenter] = useState([]);
   const [displayResources, setDisplayResources] = useState([]);
+  const [reservations, setReservations] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
@@ -44,6 +45,15 @@ function InformationContainer({
         .then((resourceData) => setDisplayResources(resourceData));
     }
   }, [displayRecCenter]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/users/${user.id}/reservations`, {
+      method: "get",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => setReservations(data));
+  }, []);
 
   useEffect(() => {
     if (user.user_type) {
@@ -94,6 +104,7 @@ function InformationContainer({
               displayRecCenter={displayRecCenter}
               setDisplayRecCenter={setDisplayRecCenter}
               displayResources={displayResources}
+              reservations={reservations}
             />
           </Route>
           <Route path="/">

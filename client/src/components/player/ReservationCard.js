@@ -2,11 +2,9 @@ import { Flex, Box, Heading, Button } from "@chakra-ui/react";
 
 function ReservationCard({ reservation, handleEdit, removeReservation }) {
   function handleClick() {
-    let stfrtime = new Date(reservation.datetime_start);
-    console.log("reservation card translation", stfrtime);
     const reservationToEdit = {
       id: reservation.id,
-      date: reservation.datetime_start,
+      date: new Date(reservation.datetime_start),
       time: parseInt(reservation.datetime_start.substring(11, 13)),
       datetime_start: reservation.datetime_start,
       datetime_end: reservation.datetime_end,

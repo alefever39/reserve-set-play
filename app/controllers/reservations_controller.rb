@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   ### add "skip_before_action :authorize, only: [:the :different :methods]" if a path does not need/shouldn't have user authentication
-  skip_before_action :authorize, only: [:index, :create]
+  skip_before_action :authorize, only: [:index, :create, :update]
 
   ############################### /reservations
   def index
@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
 
   def update
     reservation = find_reservation
-    reservation.update!(reservation_update_params)
+    reservation.update!(reservation_params)
     render json: reservation
   end
 
