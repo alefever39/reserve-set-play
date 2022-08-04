@@ -16,30 +16,31 @@ function EveryoneContainer({
   displayRecCenter,
   setDisplayRecCenter,
   handleNewReservation,
+  displayResources,
 }) {
-  const [displayResources, setDisplayResources] = useState([]);
+  // const [displayResources, setDisplayResources] = useState([]);
 
-  useEffect(() => {
-    setDisplayRecCenter(recCenters[0]);
-  }, [recCenters]);
+  // useEffect(() => {
+  //   setDisplayRecCenter(recCenters[0]);
+  // }, [recCenters]);
 
-  useEffect(() => {
-    if (displayRecCenter) {
-      fetch(
-        `http://127.0.0.1:3000/admin/rec_centers/${displayRecCenter.id}/resources`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      )
-        .then((r) => r.json())
-        .then((resourceData) => setDisplayResources(resourceData));
-    }
+  // useEffect(() => {
+  //   if (displayRecCenter) {
+  //     fetch(
+  //       `http://127.0.0.1:3000/admin/rec_centers/${displayRecCenter.id}/resources`,
+  //       {
+  //         method: "GET",
+  //         credentials: "include",
+  //       }
+  //     )
+  //       .then((r) => r.json())
+  //       .then((resourceData) => setDisplayResources(resourceData));
+  //   }
 
-    return function cleanup() {
-      return null;
-    };
-  }, [displayRecCenter]);
+  //   return function cleanup() {
+  //     return null;
+  //   };
+  // }, [displayRecCenter]);
 
   function handleCalendarSelection(currentCalendarSelection) {
     setDisplayReservation(currentCalendarSelection);

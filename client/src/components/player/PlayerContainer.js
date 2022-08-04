@@ -4,7 +4,6 @@ import Reservations from "./Reservations";
 import React, { useState, useEffect } from "react";
 import { buildYearMonthDay } from "../helperFunctions.js";
 
-
 function PlayerContainer({
   user,
   recCenters,
@@ -14,36 +13,10 @@ function PlayerContainer({
   setDisplayDate,
   displayRecCenter,
   setDisplayRecCenter,
+  displayResources,
 }) {
-  let today = new Date();
-  const day = String(today.getDate()).padStart(2, "0");
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const year = today.getFullYear();
-  today = year + "-" + month + "-" + day;
-
   const [displayReservation, setDisplayReservation] = useState("");
   const history = useHistory();
-  const [displayDate, setDisplayDate] = useState(today);
-  const [displayRecCenter, setDisplayRecCenter] = useState(recCenters[0]);
-  const [displayResources, setDisplayResources] = useState([]);
-
-  useEffect(() => {
-    setDisplayRecCenter(recCenters[0]);
-  }, [recCenters]);
-
-  useEffect(() => {
-    if (displayRecCenter) {
-      fetch(
-        `http://127.0.0.1:3000/admin/rec_centers/${displayRecCenter.id}/resources`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      )
-        .then((r) => r.json())
-        .then((resourceData) => setDisplayResources(resourceData));
-    }
-  }, [displayRecCenter]);
 
   if (user.user_type) {
     if (user.user_type.user_type !== "player") {
@@ -115,7 +88,6 @@ function PlayerContainer({
       <Switch>
         <Route path="/home/my_reservations">
           <Reservations user={user} handleEdit={handleEdit} />
-
         </Route>
         <Route path="/home">
           <SpaceContainer
@@ -125,7 +97,6 @@ function PlayerContainer({
             displayReservation={displayReservation}
             handleCalendarSelection={handleCalendarSelection}
             handleNewReservation={handleNewReservation}
-            displayDate={displayDate}
             displayRecCenter={displayRecCenter}
             displayResources={displayResources}
             setDisplayRecCenter={setDisplayRecCenter}

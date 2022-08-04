@@ -22,6 +22,7 @@ function DateCarousel({ displayDate, setDisplayDate }) {
   const today = new Date();
 
   function handleLeftClick() {
+    console.log("date carousel", displayDate);
     const newDate = getPreviousDay(displayDate);
     setCarouselDate(buildDayOfWeekMonthDay(newDate));
     setDisplayDate(newDate);

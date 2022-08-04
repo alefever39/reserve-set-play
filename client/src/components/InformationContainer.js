@@ -16,6 +16,7 @@ function InformationContainer({
   const [displayDate, setDisplayDate] = useState(new Date());
   const [displayReservation, setDisplayReservation] = useState({});
   const [displayRecCenter, setDisplayRecCenter] = useState([]);
+  const [displayResources, setDisplayResources] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
@@ -29,6 +30,20 @@ function InformationContainer({
         setDisplayRecCenter(data[0]);
       });
   }, []);
+
+  useEffect(() => {
+    if (displayRecCenter) {
+      fetch(
+        `http://127.0.0.1:3000/admin/rec_centers/${displayRecCenter.id}/resources`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      )
+        .then((r) => r.json())
+        .then((resourceData) => setDisplayResources(resourceData));
+    }
+  }, [displayRecCenter]);
 
   useEffect(() => {
     if (user.user_type) {
@@ -63,7 +78,7 @@ function InformationContainer({
               setDisplayReservation={setDisplayReservation}
               displayRecCenter={displayRecCenter}
               setDisplayRecCenter={setDisplayRecCenter}
-              handleNewReservation={handleNewReservation}
+              displayResources={displayResources}
             />
           </Route>
           <Route path="/home">
@@ -78,7 +93,7 @@ function InformationContainer({
               setDisplayReservation={setDisplayReservation}
               displayRecCenter={displayRecCenter}
               setDisplayRecCenter={setDisplayRecCenter}
-              handleNewReservation={handleNewReservation}
+              displayResources={displayResources}
             />
           </Route>
           <Route path="/">
@@ -92,7 +107,7 @@ function InformationContainer({
               setDisplayReservation={setDisplayReservation}
               displayRecCenter={displayRecCenter}
               setDisplayRecCenter={setDisplayRecCenter}
-              handleNewReservation={handleNewReservation}
+              displayResources={displayResources}
             />
           </Route>
         </Switch>
