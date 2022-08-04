@@ -12,8 +12,8 @@ function EveryoneContainer({
   setUser,
   displayDate,
   setDisplayDate,
+  setDisplayReservation,
 }) {
-  const [displayReservation, setDisplayReservation] = useState({});
   const [displayRecCenter, setDisplayRecCenter] = useState(recCenters[0]);
   const [displayResources, setDisplayResources] = useState([]);
 
