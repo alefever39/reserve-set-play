@@ -7,6 +7,8 @@ function PlayerContainer({
   recCenters,
   loginModalOpen,
   setLoginModalOpen,
+  displayDate,
+  setDisplayDate,
 }) {
   const history = useHistory();
 
@@ -17,7 +19,7 @@ function PlayerContainer({
   } else {
     history.push("/");
   }
-  
+
   return (
     <div>
       <Switch>
@@ -25,7 +27,11 @@ function PlayerContainer({
           <Reservations />
         </Route>
         <Route path="/home">
-          <SpaceContainer recCenters={recCenters} />
+          <SpaceContainer
+            recCenters={recCenters}
+            displayDate={displayDate}
+            setDisplayDate={setDisplayDate}
+          />
         </Route>
       </Switch>
     </div>

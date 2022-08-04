@@ -1,5 +1,6 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { buildYearMonthDay } from "../helperFunctions.js";
 
 function Calendar({
   displayDate,
@@ -8,6 +9,7 @@ function Calendar({
   handleCalendarSelection,
 }) {
   const [existingCalendarIds, setExistingCalendarIds] = useState([]);
+  const [readyToLoad, setReadyToLoad] = useState(false);
 
   const recCenterOpenDateTime = new Date(displayRecCenter.opens_at);
   const recCenterCloseDateTime = new Date(displayRecCenter.closes_at);
@@ -22,7 +24,9 @@ function Calendar({
 
   useEffect(() => {
     fetch(
-      `http://localhost:3000/admin/rec_centers/${displayRecCenter.id}/reservations/${displayDate}`,
+      `http://localhost:3000/admin/rec_centers/${
+        displayRecCenter.id
+      }/reservations/${buildYearMonthDay(displayDate)}`,
       {
         method: "GET",
         credentials: "include",
@@ -42,26 +46,30 @@ function Calendar({
           return `calendarId:${calendarId}`;
         });
         setExistingCalendarIds(reservationCalendarIds);
+        setReadyToLoad(true);
       });
-  }, []);
+  }, [displayDate]);
 
   const calendarTopRow = [];
   const calendarBody = [];
 
-  // calendar top row
-  calendarTopRow.push(formatSquare());
+  ////// Constructing calendar
+  if (readyToLoad) {
+    // calendar top row
+    calendarTopRow.push(formatSquare());
 
-  displayResources.forEach((resource) =>
-    calendarTopRow.push(resourceSquare(resource))
-  );
+    displayResources.forEach((resource) =>
+      calendarTopRow.push(resourceSquare(resource))
+    );
 
-  // calendar body
-  for (let i = 0; i < recCenterHours * gridColumns; i++) {
-    const calendarId = i + gridColumns;
-    if (calendarId % gridColumns === 0) {
-      calendarBody.push(timeSquare(calendarId, i));
-    } else {
-      calendarBody.push(calendarSquare(calendarId));
+    // calendar body
+    for (let i = 0; i < recCenterHours * gridColumns; i++) {
+      const calendarId = i + gridColumns;
+      if (calendarId % gridColumns === 0) {
+        calendarBody.push(timeSquare(calendarId, i));
+      } else {
+        calendarBody.push(calendarSquare(calendarId));
+      }
     }
   }
 
@@ -197,19 +205,31 @@ function Calendar({
   }
 
   return (
-    <div>
-      <h2>Calendar</h2>
-      <Grid
-        templateAreas={dynamicGridTemplate}
-        gridTemplateColumns={dynamicColumns}
-        gridTemplateRows={dynamicRows}
-        gap={4}
-        mx={190}
-      >
-        {calendarTopRow}
-        {calendarBody}
-      </Grid>
-    </div>
+    <>
+      {readyToLoad ? (
+        <div>
+          <h2>Calendar</h2>
+          <Grid
+            templateAreas={dynamicGridTemplate}
+            gridTemplateColumns={dynamicColumns}
+            gridTemplateRows={dynamicRows}
+            gap={4}
+            mx={190}
+          >
+            {calendarTopRow}
+            {calendarBody}
+          </Grid>
+        </div>
+      ) : (
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      )}
+    </>
   );
 }
 

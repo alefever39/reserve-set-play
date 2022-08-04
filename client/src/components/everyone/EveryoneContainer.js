@@ -10,14 +10,9 @@ function EveryoneContainer({
   loginModalOpen,
   setLoginModalOpen,
   setUser,
+  displayDate,
+  setDisplayDate,
 }) {
-  let today = new Date();
-  const day = String(today.getDate()).padStart(2, "0");
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const year = today.getFullYear();
-  today = year + "-" + month + "-" + day;
-
-  const [displayDate, setDisplayDate] = useState(today);
   const [displayReservation, setDisplayReservation] = useState({});
   const [displayRecCenter, setDisplayRecCenter] = useState(recCenters[0]);
   const [displayResources, setDisplayResources] = useState([]);
@@ -48,10 +43,11 @@ function EveryoneContainer({
     <div>
       <RecCenterCarousel recCenters={recCenters} />
       <br />
-      <DateCarousel />
+      <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />
       {displayRecCenter ? (
         <Calendar
           displayDate={displayDate}
+          setDisplayDate={setDisplayDate}
           displayRecCenter={displayRecCenter}
           displayResources={displayResources}
           handleCalendarSelection={handleCalendarSelection}
