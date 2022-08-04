@@ -2,14 +2,14 @@ import RecCenterCard from "./RecCenterCard";
 import { Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 
-function RecCenterCarousel({ recCenters, setDisplayRecCenter }) {
+function RecCenterCarousel({ recCenters, setDisplayRecCenter, admin }) {
   const [displayedCard, setDisplayedCard] = useState(0);
   const { isOpen, onToggle } = useDisclosure();
 
   const recCentersCards = recCenters.map((recCenter) => {
     return (
       <Box m="20px">
-        <RecCenterCard key={recCenter.id} recCenter={recCenter} />
+        <RecCenterCard key={recCenter.id} recCenter={recCenter} admin={admin} />
       </Box>
     );
   });

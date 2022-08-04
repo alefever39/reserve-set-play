@@ -55,6 +55,7 @@ function AdminContainer({
             displayRecCenter={displayRecCenter}
             setDisplayRecCenter={setDisplayRecCenter}
             handleNewReservation={handleNewReservation}
+            admin={true}
           />
         </Route>
       </Switch>

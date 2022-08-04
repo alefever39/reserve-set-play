@@ -14,6 +14,7 @@ function SpaceContainer({
   handleNewReservation,
   displayRecCenter,
   setDisplayRecCenter,
+  admin,
 }) {
   const [displayResources, setDisplayResources] = useState([]);
 
@@ -40,6 +41,7 @@ function SpaceContainer({
       <RecCenterCarousel
         recCenters={recCenters}
         setDisplayRecCenter={setDisplayRecCenter}
+        admin={admin}
       />
       <br />
       <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />

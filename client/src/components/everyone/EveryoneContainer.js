@@ -50,6 +50,7 @@ function EveryoneContainer({
       <RecCenterCarousel
         recCenters={recCenters}
         setDisplayRecCenter={setDisplayRecCenter}
+        admin={false}
       />
       <br />
       <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />
