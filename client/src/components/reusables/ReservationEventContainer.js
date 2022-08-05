@@ -6,6 +6,7 @@ import NewReservation from "../player/NewReservation";
 function ReservationEventContainer({
   handleNewReservation,
   handleUpdate,
+  handleDelete,
   handleAdminReservation,
   setDisplayReservation,
 }) {
@@ -15,6 +16,7 @@ function ReservationEventContainer({
         <Route path="/home/edit_reservation">
           <EditReservation
             handleUpdate={handleUpdate}
+            handleDelete={handleDelete}
             setDisplayReservation={setDisplayReservation}
           />
         </Route>

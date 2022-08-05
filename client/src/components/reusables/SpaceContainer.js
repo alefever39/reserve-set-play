@@ -17,6 +17,7 @@ function SpaceContainer({
   setDisplayRecCenter,
   admin,
   handleUpdate,
+  handleDelete,
   handleAdminReservation,
   reservations,
   setDisplayReservation,
@@ -46,6 +47,7 @@ function SpaceContainer({
         displayReservation={displayReservation}
         handleNewReservation={handleNewReservation}
         handleUpdate={handleUpdate}
+        handleDelete={handleDelete}
         handleAdminReservation={handleAdminReservation}
         setDisplayReservation={setDisplayReservation}
       />
