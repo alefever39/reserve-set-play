@@ -1,5 +1,11 @@
+import { useHistory } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 function EditReservation() {
+  const history = useHistory();
+
+  function handleReRoute(){
+    history.push("/home/my_reservations")
+  }
   return (
     <>
       <Box
@@ -30,7 +36,7 @@ function EditReservation() {
       </Box>
       <Box
         as="button"
-        // onClick={handleNewReservation}
+        onClick={handleReRoute}
         background="teal.300"
         borderRadius="2xl"
         px="30px"
