@@ -60,7 +60,7 @@ function PlayerContainer({
   function handleEdit(edittedReservation) {
     console.log(edittedReservation);
     setDisplayReservation(edittedReservation);
-    setDisplayDate(edittedReservation.date);
+    setDisplayDate(new Date(edittedReservation.date));
     setDisplayRecCenter(edittedReservation.recCenter);
     history.push("/home/edit_reservation");
   }

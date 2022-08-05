@@ -45,6 +45,7 @@ function SpaceContainer({
         recCenters={recCenters}
         setDisplayRecCenter={setDisplayRecCenter}
         admin={admin}
+        displayRecCenter={displayRecCenter}
       />
       <br />
       <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />

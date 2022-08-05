@@ -1,9 +1,12 @@
 import ReservationCard from "./ReservationCard";
 import { Flex, Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import { getPreviousDay } from "../helperFunctions.js";
 
 function Reservations({ user, handleEdit }) {
   const [reservations, setReservations] = useState([]);
+  const yesterday = getPreviousDay();
+
   useEffect(() => {
     fetch(`http://localhost:3000/users/${user.id}/reservations`, {
       method: "get",
@@ -13,20 +16,29 @@ function Reservations({ user, handleEdit }) {
       .then((data) => setReservations(data));
   }, []);
 
-  const userReservationCards = reservations.map((reservation) => (
+  const userReservationCards = reservations
+    .map((reservation) => {
+      const reservationDate = new Date(reservation.datetime_start);
+      if (
+        String(reservationDate.getTime()).slice(0, 8) >
+        String(yesterday.getTime())
+      )
+        return (
+          <ReservationCard
+            key={reservation.id}
+            reservation={reservation}
+            handleEdit={handleEdit}
+            removeReservation={removeReservation}
+          />
+        );
+    })
+    .filter((n) => n);
 
-    <ReservationCard
-      key={reservation.id}
-      reservation={reservation}
-      handleEdit={handleEdit}
-      removeReservation={removeReservation}
-    />
-  ));
-
-
-  function removeReservation(deletedReservationId){
-    const updatedReservationsList = reservations.filter((reservation) => reservation.id!== deletedReservationId)
-    setReservations(updatedReservationsList)
+  function removeReservation(deletedReservationId) {
+    const updatedReservationsList = reservations.filter(
+      (reservation) => reservation.id !== deletedReservationId
+    );
+    setReservations(updatedReservationsList);
   }
 
   return (

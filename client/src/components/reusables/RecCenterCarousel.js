@@ -1,10 +1,23 @@
 import RecCenterCard from "./RecCenterCard";
 import { Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function RecCenterCarousel({ recCenters, setDisplayRecCenter, admin }) {
+function RecCenterCarousel({
+  recCenters,
+  setDisplayRecCenter,
+  admin,
+  displayRecCenter,
+}) {
   const [displayedCard, setDisplayedCard] = useState(0);
   const { isOpen, onToggle } = useDisclosure();
+
+  useEffect(() => {
+    recCenters.forEach((recCenter, i) => {
+      if (recCenter.id === displayRecCenter.id) {
+        setDisplayedCard(i);
+      }
+    });
+  }, []);
 
   const recCentersCards = recCenters.map((recCenter) => {
     return (
