@@ -45,10 +45,36 @@ function Calendar({
             (hoursFromOpenTime + 1) * gridColumns + resourceIndex;
           return `calendarId:${calendarId}`;
         });
-        setExistingCalendarIds(reservationCalendarIds);
+        const allUnavilableTimes = dayOfBlockOff(reservationCalendarIds);
+        setExistingCalendarIds(allUnavilableTimes);
         setReadyToLoad(true);
       });
-  }, [displayDate, displayRecCenter, reservations]);
+  }, [displayDate, displayRecCenter, reservations, displayResources]);
+
+  function dayOfBlockOff(reservationCalendarIds) {
+    const today = new Date();
+    if (
+      today.getDate() === displayDate.getDate() &&
+      today.getMonth() === displayDate.getMonth() &&
+      today.getFullYear() === displayDate.getFullYear()
+    ) {
+      const currentHour = today.getHours() + 1;
+      const unavailableHours = currentHour - recCenterOpenTime;
+      for (
+        let i = gridColumns + 1;
+        i <= gridColumns * (unavailableHours + 1);
+        i++
+      ) {
+        const reservationExists = reservationCalendarIds.includes(
+          `calendarId:${i}`
+        );
+        if (i % gridColumns !== 0 && !reservationExists) {
+          reservationCalendarIds.push(`calendarId:${i}`);
+        }
+      }
+    }
+    return reservationCalendarIds;
+  }
 
   const calendarTopRow = [];
   const calendarBody = [];
