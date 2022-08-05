@@ -2,8 +2,12 @@ import ReservationCard from "./ReservationCard";
 import { Flex, Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { getPreviousDay } from "../helperFunctions.js";
 
-function Reservations({ handleEdit, handleDelete, reservations, setReservations }) {
-  
+function Reservations({
+  handleEdit,
+  handleDelete,
+  reservations,
+  setReservations,
+}) {
   const yesterday = getPreviousDay();
 
   const userReservationCards = reservations
@@ -18,7 +22,7 @@ function Reservations({ handleEdit, handleDelete, reservations, setReservations 
             key={reservation.id}
             reservation={reservation}
             allReservations={reservations}
-            setReservations = {setReservations}
+            setReservations={setReservations}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
           />
@@ -28,17 +32,14 @@ function Reservations({ handleEdit, handleDelete, reservations, setReservations 
 
   return (
     <Box>
-      <Flex
-        h="100px"
-        justifyContent="space-between"
-        alignItems="center"
-        mx="15px"
-      >
+      <Flex h="100px" alignItems="center" mx="15px">
         <Heading as="h1">Upcoming Reservations</Heading>
       </Flex>
-      <SimpleGrid minChildWidth="320px" spacing="30px" mx="15px">
-        {userReservationCards}
-      </SimpleGrid>
+      <Box justifyContent="center" overflow="hidden">
+        <SimpleGrid minChildWidth="320px" spacing="30px" mx="15px">
+          {userReservationCards}
+        </SimpleGrid>
+      </Box>
     </Box>
   );
 }

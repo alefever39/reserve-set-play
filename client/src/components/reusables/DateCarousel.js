@@ -22,7 +22,6 @@ function DateCarousel({ displayDate, setDisplayDate }) {
   const today = new Date();
 
   function handleLeftClick() {
-    console.log("date carousel", displayDate);
     const newDate = getPreviousDay(displayDate);
     setCarouselDate(buildDayOfWeekMonthDay(newDate));
     setDisplayDate(newDate);
@@ -43,6 +42,7 @@ function DateCarousel({ displayDate, setDisplayDate }) {
           border="none"
           variant="link"
           isDisabled
+          fontSize="xl"
         >
           ←
         </Button>
@@ -54,6 +54,7 @@ function DateCarousel({ displayDate, setDisplayDate }) {
           colorScheme="teal"
           border="none"
           variant="link"
+          fontSize="xl"
         >
           ←
         </Button>
@@ -65,7 +66,7 @@ function DateCarousel({ displayDate, setDisplayDate }) {
     <>
       <Flex justify="center" align="center">
         {backButton()}
-        <Box w="100px" fontWeight={"bold"} fontSize="xl">
+        <Box w="200px" fontWeight={"bold"} fontSize="xl">
           {carouselDate}
         </Box>
         <Button
@@ -73,6 +74,7 @@ function DateCarousel({ displayDate, setDisplayDate }) {
           colorScheme="teal"
           border="none"
           variant="link"
+          fontSize="xl"
         >
           →
         </Button>

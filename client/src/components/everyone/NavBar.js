@@ -20,7 +20,7 @@ function NavBar({ setLoginModalOpen, user, setUser }) {
   const notLoggedInNavigation = (
     <Breadcrumb separator="|">
       <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/" fontSize="xl">
+        <BreadcrumbLink as={Link} to="/" fontWeight="semibold" fontSize="xl">
           Calendar
         </BreadcrumbLink>
       </BreadcrumbItem>
@@ -105,14 +105,11 @@ function NavBar({ setLoginModalOpen, user, setUser }) {
 
   return (
     <Flex
-      as="header"
       minWidth="max-content"
       alignItems="center"
       gap="2"
       bg="teal.100"
       p="2"
-      position="fixed"
-      w="100%"
       borderBottomRadius="md"
       boxShadow="md"
     >
