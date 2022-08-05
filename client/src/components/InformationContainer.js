@@ -21,7 +21,7 @@ function InformationContainer({
   const history = useHistory();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/rec_centers`, {
+    fetch(`/rec_centers`, {
       method: "GET",
       credentials: "include",
     })
@@ -34,19 +34,16 @@ function InformationContainer({
 
   useEffect(() => {
     if (displayRecCenter) {
-      fetch(
-        `http://127.0.0.1:3000/admin/rec_centers/${displayRecCenter.id}/resources`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      )
+      fetch(`/admin/rec_centers/${displayRecCenter.id}/resources`, {
+        method: "GET",
+        credentials: "include",
+      })
         .then((r) => r.json())
         .then((resourceData) => {
           setDisplayResources(resourceData);
         });
     } else {
-      fetch(`http://127.0.0.1:3000/admin/rec_centers/1/resources`, {
+      fetch(`/admin/rec_centers/1/resources`, {
         method: "GET",
         credentials: "include",
       })
@@ -59,7 +56,7 @@ function InformationContainer({
 
   useEffect(() => {
     console.log(user);
-    fetch(`http://localhost:3000/users/${user.id}/reservations`, {
+    fetch(`/users/${user.id}/reservations`, {
       method: "GET",
       credentials: "include",
     })

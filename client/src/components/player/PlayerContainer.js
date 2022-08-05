@@ -47,7 +47,7 @@ function PlayerContainer({
       user_id: user.id,
     };
 
-    fetch(`http://127.0.0.1:3000/reservations`, {
+    fetch(`/reservations`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ function PlayerContainer({
       datetime_start: displayReservation.datetime_start,
       datetime_end: displayReservation.datetime_end,
     };
-    fetch(`http://127.0.0.1:3000/reservations/${editReservationId}`, {
+    fetch(`/reservations/${editReservationId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

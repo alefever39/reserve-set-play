@@ -10,7 +10,7 @@ function App() {
   const [readyToLoad, setReadyToLoad] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3000/me", {
+    fetch("/me", {
       method: "GET",
       credentials: "include",
     })
