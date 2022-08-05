@@ -1,6 +1,10 @@
 import { useHistory } from "react-router-dom";
-import { Box } from "@chakra-ui/react";
-function EditReservation({ handleUpdate, setDisplayReservation, handleDelete }) {
+import { Box, VStack } from "@chakra-ui/react";
+function EditReservation({
+  handleUpdate,
+  setDisplayReservation,
+  handleDelete,
+}) {
   const history = useHistory();
 
   function handleReRoute() {
@@ -9,12 +13,13 @@ function EditReservation({ handleUpdate, setDisplayReservation, handleDelete }) 
   }
 
   return (
-    <>
+    <VStack spacing="25px">
       <Box
         as="button"
         onClick={handleUpdate}
         background="teal.300"
         borderRadius="2xl"
+        width="240px"
         px="30px"
         py="10px"
         fontWeight="semibold"
@@ -28,6 +33,7 @@ function EditReservation({ handleUpdate, setDisplayReservation, handleDelete }) 
         onClick={handleDelete}
         background="teal.300"
         borderRadius="2xl"
+        width="240px"
         px="30px"
         py="10px"
         fontWeight="semibold"
@@ -41,7 +47,8 @@ function EditReservation({ handleUpdate, setDisplayReservation, handleDelete }) 
         onClick={handleReRoute}
         background="teal.300"
         borderRadius="2xl"
-        px="30px"
+        width="240px"
+        px="5px"
         py="10px"
         fontWeight="semibold"
         _hover={{ background: "teal.200" }}
@@ -49,7 +56,7 @@ function EditReservation({ handleUpdate, setDisplayReservation, handleDelete }) 
         {" "}
         Go Back to My Reservations
       </Box>
-    </>
+    </VStack>
   );
 }
 

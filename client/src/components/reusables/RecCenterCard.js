@@ -11,49 +11,92 @@ function RecCenterCard({ recCenter, admin }) {
   }
   return (
     <Box
-      maxW="sm"
-      minH="sm"
-      borderWidth="1px"
-      borderRadius="lg"
-      overflow="hidden"
-      onClick={handleClick}
+      border="2px"
+      borderColor="gray.200"
+      borderRadius="md"
+      boxShadow="md"
+      py="20px"
+      align="center"
     >
-      <Flex direction="column" align="center" m="5px">
-        <Box w="230px" mt="10px">
-          <Image
-            fit
-            src="/map_image.png"
-            alt="Map with location"
-            width="full"
-            height="180px"
-          />
-        </Box>
-        <br />
-        <Box>
-          {recCenter.name}
-          <Box display="flex" justifyContent="space-around">
-            <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight"></Box>
-            <Box
-              color="gray.500"
-              fontWeight="semibold"
-              letterSpacing="wide"
-              fontSize="xs"
-              textTransform="uppercase"
-              ml="2"
-            >
-              {recCenter.address}
-            </Box>
-          </Box>
+      <Image
+        fit
+        src="/map_image.png"
+        alt="Map with location"
+        width="230px"
+        height="180px"
+        mb="12px"
+      />
 
-          <Box as="span" color="gray.600" fontSize="sm">
-            Open hours: {recCenter.opening_hours}
-          </Box>
-
-          <Box display="flex" mt="2" alignItems="center">
-            {recCenter.description}
-          </Box>
+      <Box color="gray.600" fontWeight="Bold" fontSize="xl" px="60px">
+        {recCenter.name}
+      </Box>
+      <Box
+        borderBottom="2px"
+        borderColor="gray.200"
+        mx="20px"
+        mt="10px"
+        mb="10px"
+      ></Box>
+      <>
+        <Box
+          fontWeight="bold"
+          textAlign={"left"}
+          fontSize="md"
+          color="gray.600"
+          px="20px"
+        >
+          Address
         </Box>
-      </Flex>
+        <Box
+          textAlign={"left"}
+          mb="10px"
+          fontWeight="semibold"
+          color="gray.600"
+          px="20px"
+          fontSize="sm"
+        >
+          {recCenter.address}
+        </Box>
+        <Box
+          fontWeight="bold"
+          textAlign={"left"}
+          fontSize="md"
+          color="gray.600"
+          px="20px"
+        >
+          Hours
+        </Box>
+        <Box
+          textAlign={"left"}
+          mb="10px"
+          fontWeight="semibold"
+          color="gray.600"
+          px="20px"
+          fontSize="sm"
+        >
+          {recCenter.opening_hours}
+        </Box>
+
+        <Box
+          fontWeight="bold"
+          textAlign={"left"}
+          fontSize="md"
+          color="gray.600"
+          px="20px"
+        >
+          Description
+        </Box>
+        <Box
+          textAlign={"left"}
+          fontWeight="semibold"
+          color="gray.600"
+          px="20px"
+          maxW="400px"
+          fontSize="sm"
+        >
+          {recCenter.description}
+        </Box>
+      </>
     </Box>
   );
 }

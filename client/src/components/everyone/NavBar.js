@@ -20,7 +20,7 @@ function NavBar({ setLoginModalOpen, user, setUser }) {
   const notLoggedInNavigation = (
     <Breadcrumb separator="|">
       <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/">
+        <BreadcrumbLink as={Link} to="/" fontSize="xl">
           Calendar
         </BreadcrumbLink>
       </BreadcrumbItem>
@@ -29,26 +29,46 @@ function NavBar({ setLoginModalOpen, user, setUser }) {
   const adminNavigation = (
     <Breadcrumb separator="|">
       <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/admin">
+        <BreadcrumbLink
+          as={Link}
+          to="/admin"
+          fontSize="lg"
+          fontWeight="semibold"
+        >
           Calendar
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/admin/rec_centers">
+        <BreadcrumbLink
+          as={Link}
+          to="/admin/rec_centers"
+          fontSize="lg"
+          fontWeight="semibold"
+        >
           Recreation Centers
         </BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>
   );
   const playerNavigation = (
-    <Breadcrumb separator="|">
+    <Breadcrumb separator="|" fontSize="lg">
       <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/home">
+        <BreadcrumbLink
+          as={Link}
+          to="/home"
+          fontSize="lg"
+          fontWeight="semibold"
+        >
           Calendar
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/home/my_reservations">
+        <BreadcrumbLink
+          as={Link}
+          to="/home/my_reservations"
+          fontSize="lg"
+          fontWeight="semibold"
+        >
           Reservations
         </BreadcrumbLink>
       </BreadcrumbItem>
@@ -84,49 +104,22 @@ function NavBar({ setLoginModalOpen, user, setUser }) {
   }
 
   return (
-    // Logged out user
-    // <Flex minWidth='max-content' alignItems='center' gap='2'>
-    //   <Box p='2'>
-    //     <Heading size='md'><img src=".../images/reserve_set_play_logo.png"></img></Heading>
-    //   </Box>
-    //   <Spacer />
-    //   <ButtonGroup gap='2'>
-    //     <Button colorScheme='teal'>Log in</Button>
-    //     <Button colorScheme='teal'>Sign Up</Button>
-    //   </ButtonGroup>
-    // </Flex>
-    // Logged in player
-    //   <Flex minWidth='max-content' alignItems='center' gap='2'>
-    //   <Box p='2'>
-    //     <Heading size='md'><img src="./images/reserve_set_play_logo.png"></img></Heading>
-    //   </Box>
-    //   <Breadcrumb separator='|'>
-    //     <BreadcrumbItem>
-    //       <BreadcrumbLink as={Link} to='/home'>
-    //         Calendar
-    //       </BreadcrumbLink>
-    //     </BreadcrumbItem>
-    //     <BreadcrumbItem>
-    //       <BreadcrumbLink as={Link} to='/home/my_reservations'>
-    //         Reservations
-    //       </BreadcrumbLink>
-    //     </BreadcrumbItem>
-    //   </Breadcrumb>
-    //   <Spacer />
-    //     <Button colorScheme='teal'>Log out</Button>
-    // </Flex>
-    //Logged in admin
     <Flex
+      as="header"
       minWidth="max-content"
       alignItems="center"
       gap="2"
-      bg="green.300"
+      bg="teal.100"
       p="2"
+      position="fixed"
+      w="100%"
+      borderBottomRadius="md"
+      boxShadow="md"
     >
       <Box p="2">
         <Heading size="md">
           <Image
-            boxSize="50px"
+            boxSize="45px"
             src="/reserve_set_play_logo.png"
             alt="Reserve set play logo"
           />
@@ -141,7 +134,9 @@ function NavBar({ setLoginModalOpen, user, setUser }) {
       <Spacer />
       {user.id ? (
         <>
-          <Text fontSize="xl">Welcome, {user.first_name}!</Text>
+          <Text fontSize="lg" fontWeight="semibold" color="gray.800">
+            Welcome, {user.first_name}!
+          </Text>
           <Button colorScheme="red" onClick={handleLogout}>
             Log out
           </Button>

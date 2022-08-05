@@ -65,7 +65,9 @@ function DateCarousel({ displayDate, setDisplayDate }) {
     <>
       <Flex justify="center" align="center">
         {backButton()}
-        <Box w="100px">{carouselDate}</Box>
+        <Box w="100px" fontWeight={"bold"} fontSize="xl">
+          {carouselDate}
+        </Box>
         <Button
           onClick={handleRightClick}
           colorScheme="teal"
