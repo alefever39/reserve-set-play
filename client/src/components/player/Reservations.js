@@ -3,18 +3,8 @@ import { Flex, Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { getPreviousDay } from "../helperFunctions.js";
 
-function Reservations({ user, handleEdit }) {
-  const [reservations, setReservations] = useState([]);
+function Reservations({ user, handleEdit, reservations }) {
   const yesterday = getPreviousDay();
-
-  useEffect(() => {
-    fetch(`http://localhost:3000/users/${user.id}/reservations`, {
-      method: "get",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => setReservations(data));
-  }, []);
 
   const userReservationCards = reservations
     .map((reservation) => {
