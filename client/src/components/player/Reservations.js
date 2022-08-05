@@ -26,7 +26,36 @@ function Reservations({ handleEdit, handleDelete, reservations, setReservations 
     })
     .filter((n) => n);
 
+  // const hasReservations = () => {
+  //   return (
+  //     <Box>
+  //       <Flex
+  //         h="100px"
+  //         justifyContent="space-between"
+  //         alignItems="center"
+  //         mx="15px"
+  //       >
+  //         <Heading as="h1">Upcoming Reservations</Heading>
+  //       </Flex>
+  //       <SimpleGrid minChildWidth="320px" spacing="30px" mx="15px">
+  //         {userReservationCards}
+  //       </SimpleGrid>
+  //   </Box>
+  //   )
+  // }
+
+  // const noReservations = () => {
+  //   return (
+  //     <Box>
+  //       <Heading as="h1">Make a new reservation</Heading>
+  //     </Box>
+  //   )
+  // }
+
   return (
+    // <>
+    //   {reservations.length > 0 ? hasReservations : noReservations}
+    // </>
     <Box>
       <Flex
         h="100px"
