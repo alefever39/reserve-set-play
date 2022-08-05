@@ -1,5 +1,15 @@
+import { useHistory } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 function EditReservation({ handleUpdate }) {
+  const history = useHistory();
+
+  function handleReRoute(){
+    history.push("/home/my_reservations")
+  }
+
+  function handleDelete(){
+    console.log("Player wants to delete a reservation")
+  }
   return (
     <>
       <Box
@@ -17,7 +27,7 @@ function EditReservation({ handleUpdate }) {
       </Box>
       <Box
         as="button"
-        // onClick={handleNewReservation}
+        onClick={handleDelete}
         background="teal.300"
         borderRadius="2xl"
         px="30px"
@@ -26,11 +36,11 @@ function EditReservation({ handleUpdate }) {
         _hover={{ background: "teal.200" }}
       >
         {" "}
-        Delete Reservation
+        Cancel Reservation
       </Box>
       <Box
         as="button"
-        // onClick={handleNewReservation}
+        onClick={handleReRoute}
         background="teal.300"
         borderRadius="2xl"
         px="30px"
