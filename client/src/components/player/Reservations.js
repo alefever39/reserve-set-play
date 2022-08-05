@@ -35,6 +35,7 @@ function Reservations({
       <Flex h="100px" alignItems="center" mx="15px">
         <Heading as="h1">Upcoming Reservations</Heading>
       </Flex>
+
       <Box justifyContent="center" overflow="hidden">
         <SimpleGrid minChildWidth="320px" spacing="30px" mx="15px">
           {userReservationCards}

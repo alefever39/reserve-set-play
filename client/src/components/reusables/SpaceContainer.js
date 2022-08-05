@@ -3,7 +3,7 @@ import DateCarousel from "./DateCarousel";
 import DetailsContainer from "./DetailsContainer";
 import RecCenterCarousel from "./RecCenterCarousel";
 import React, { useState, useEffect } from "react";
-import { CircularProgress } from "@chakra-ui/react";
+import { CircularProgress, Box, Center } from "@chakra-ui/react";
 
 function SpaceContainer({
   displayDate,
@@ -23,14 +23,16 @@ function SpaceContainer({
   setDisplayReservation,
 }) {
   return (
-    <div>
+    <>
       <RecCenterCarousel
         recCenters={recCenters}
         setDisplayRecCenter={setDisplayRecCenter}
         admin={admin}
         displayRecCenter={displayRecCenter}
       />
+
       <br />
+
       <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />
       {displayRecCenter && displayResources.length !== 0 ? (
         <Calendar
@@ -43,6 +45,7 @@ function SpaceContainer({
       ) : (
         <CircularProgress isIndeterminate color="green.300" />
       )}
+
       <DetailsContainer
         displayReservation={displayReservation}
         handleNewReservation={handleNewReservation}
@@ -51,7 +54,7 @@ function SpaceContainer({
         handleAdminReservation={handleAdminReservation}
         setDisplayReservation={setDisplayReservation}
       />
-    </div>
+    </>
   );
 }
 

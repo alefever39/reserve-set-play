@@ -46,16 +46,6 @@ function Calendar({
             ) + 1;
           const calendarId =
             (hoursFromOpenTime + 1) * gridColumns + resourceIndex;
-          console.log(
-            "reservation",
-            reservation,
-            "hoursfromOpen",
-            hoursFromOpenTime,
-            "gridcolumns",
-            gridColumns,
-            "resourceIndex",
-            resourceIndex
-          );
           return `calendarId:${calendarId}`;
         });
         const allUnavilableTimes = dayOfBlockOff(reservationCalendarIds);

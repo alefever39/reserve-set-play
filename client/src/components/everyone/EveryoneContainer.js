@@ -2,7 +2,7 @@ import Calendar from "../reusables/Calendar";
 import DateCarousel from "../reusables/DateCarousel";
 import RecCenterCarousel from "../reusables/RecCenterCarousel";
 import LoginModal from "./LoginModal";
-import { CircularProgress, Button } from "@chakra-ui/react";
+import { CircularProgress, Box, Heading } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 
 function EveryoneContainer({
@@ -19,29 +19,6 @@ function EveryoneContainer({
   displayResources,
 }) {
   const [openSignup, setOpenSignup] = useState(false);
-  // const [displayResources, setDisplayResources] = useState([]);
-
-  // useEffect(() => {
-  //   setDisplayRecCenter(recCenters[0]);
-  // }, [recCenters]);
-
-  // useEffect(() => {
-  //   if (displayRecCenter) {
-  //     fetch(
-  //       `http://127.0.0.1:3000/admin/rec_centers/${displayRecCenter.id}/resources`,
-  //       {
-  //         method: "GET",
-  //         credentials: "include",
-  //       }
-  //     )
-  //       .then((r) => r.json())
-  //       .then((resourceData) => setDisplayResources(resourceData));
-  //   }
-
-  //   return function cleanup() {
-  //     return null;
-  //   };
-  // }, [displayRecCenter]);
 
   function handleCalendarSelection(currentCalendarSelection) {
     setDisplayReservation(currentCalendarSelection);
@@ -82,10 +59,23 @@ function EveryoneContainer({
         />
       ) : null}
       <br />
-      <h3> Want to reserve a space? </h3>
-      <Button colorScheme="teal" onClick={handleSignupClick}>
+      <Heading as="h4" fontSize="lg" mb="7px">
+        {" "}
+        Want to reserve a space?{" "}
+      </Heading>
+      <Box
+        as="button"
+        borderRadius="lg"
+        bg="teal.300"
+        onClick={handleSignupClick}
+        mb="20px"
+        fontSize="2xl"
+        fontWeight="semibold"
+        py={2}
+        px={40}
+      >
         Sign up!
-      </Button>
+      </Box>
     </div>
   );
 }
