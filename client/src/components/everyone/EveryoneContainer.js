@@ -2,7 +2,7 @@ import Calendar from "../reusables/Calendar";
 import DateCarousel from "../reusables/DateCarousel";
 import RecCenterCarousel from "../reusables/RecCenterCarousel";
 import LoginModal from "./LoginModal";
-import { CircularProgress } from "@chakra-ui/react";
+import { CircularProgress, Button } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 
 function EveryoneContainer({
@@ -18,6 +18,7 @@ function EveryoneContainer({
   handleNewReservation,
   displayResources,
 }) {
+  const [openSignup, setOpenSignup] = useState(false);
   // const [displayResources, setDisplayResources] = useState([]);
 
   // useEffect(() => {
@@ -46,12 +47,18 @@ function EveryoneContainer({
     setDisplayReservation(currentCalendarSelection);
   }
 
+  function handleSignupClick() {
+    setOpenSignup(true);
+    setLoginModalOpen(true);
+  }
+
   return (
     <div>
       <RecCenterCarousel
         recCenters={recCenters}
         setDisplayRecCenter={setDisplayRecCenter}
         admin={false}
+        displayRecCenter={displayRecCenter}
       />
       <br />
       <DateCarousel displayDate={displayDate} setDisplayDate={setDisplayDate} />
@@ -67,9 +74,18 @@ function EveryoneContainer({
         <CircularProgress isIndeterminate color="green.300" />
       )}
       {loginModalOpen ? (
-        <LoginModal setLoginModalOpen={setLoginModalOpen} setUser={setUser} />
+        <LoginModal
+          setLoginModalOpen={setLoginModalOpen}
+          setUser={setUser}
+          openSignup={openSignup}
+          setOpenSignup={setOpenSignup}
+        />
       ) : null}
-      <h3> Reserve </h3>
+      <br />
+      <h3> Want to reserve a space? </h3>
+      <Button colorScheme="teal" onClick={handleSignupClick}>
+        Sign up!
+      </Button>
     </div>
   );
 }
