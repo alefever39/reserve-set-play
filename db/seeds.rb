@@ -10,46 +10,46 @@ require "faker"
 puts "Seeding rec centers..."
 # Rec centers
 RecCenter.create(
-  name: Faker::Company.name,
-  address: Faker::Address.full_address,
+  name: "Central Park",
+  address: "9651 E. Martin Luther King Jr Blvd. 80238",
   phone: Faker::PhoneNumber.cell_phone,
-  description: Faker::Lorem.paragraph,
+  description: "Central Park is a Regional Level recreation center located in the northeast area. Its facility features include: Weight and cardio rooms, Gymnasium, Spin studio.",
   opens_at: "08:00:00",
   closes_at: "21:00:00",
   image: "../images/map_image.png"
 )
 RecCenter.create(
-  name: Faker::Company.name,
-  address: Faker::Address.full_address,
+  name: "La Alma",
+  address: "1325 W. 11th Ave. 80204",
   phone: Faker::PhoneNumber.cell_phone,
-  description: Faker::Lorem.paragraph,
+  description: "La Alma is a Neighborhood Level recreation center located in the southwest area. Its facility features include: Multipurpose room, Game room with ping pong, foosball, and a pool table."
   opens_at: "10:00:00",
   closes_at: "23:00:00",
   image: "../images/map_image.png"
 )
 RecCenter.create(
-  name: Faker::Company.name,
-  address: Faker::Address.full_address,
+  name: "Carla Madison",
+  address: "2401 E. Colfax Ave. 80206 ",
   phone: Faker::PhoneNumber.cell_phone,
-  description: Faker::Lorem.paragraph,
+  description: "Carla Madison is Denver's newest Regional Level Center located in the northeast area. Its facility features include: Weight and cardio room, Group fitness studio, Outdoor climbing wall",
   opens_at: "06:00:00",
   closes_at: "19:00:00",
   image: "../images/map_image.png"
 )
 RecCenter.create(
-  name: Faker::Company.name,
-  address: Faker::Address.full_address,
+  name: "Washington Park",
+  address: "701 S. Franklin St. 80209",
   phone: Faker::PhoneNumber.cell_phone,
-  description: Faker::Lorem.paragraph,
+  description: "Washington Park is a Regional Level recreation center located in the southeast area. Its facility features include: Weight and cardio rooms, Stretching room, Personal training",
   opens_at: "09:00:00",
   closes_at: "22:00:00",
   image: "../images/map_image.png"
 )
 RecCenter.create(
-  name: Faker::Company.name,
-  address: Faker::Address.full_address,
+  name: "Harvey Park",
+  address: "2120 S. Tennyson Way, 80219",
   phone: Faker::PhoneNumber.cell_phone,
-  description: Faker::Lorem.paragraph,
+  description: "Harvey Park is a Local Level recreation center in the southwest area. Its facility features include: Game room with billiards, Fitness room, Gymnasium",
   opens_at: "09:00:00",
   closes_at: "22:00:00",
   image: "../images/map_image.png"
@@ -115,30 +115,30 @@ ReservationType.create(reservation_type: "Out of service")
 puts "Seeding resources..."
 # Resources
 
-Resource.create(rec_center_id: 1, name: "Court 1", sports_type_id: 1)
-Resource.create(rec_center_id: 1, name: "Court 2", sports_type_id: 1)
-Resource.create(rec_center_id: 1, name: "Court 3", sports_type_id: 2)
-Resource.create(rec_center_id: 1, name: "Court 4", sports_type_id: 2)
+Resource.create(rec_center_id: 1, name: "Pickleball Pro", sports_type_id: 1)
+Resource.create(rec_center_id: 1, name: "Pickleball Beginners", sports_type_id: 1)
+Resource.create(rec_center_id: 1, name: "Tennis Friendly", sports_type_id: 2)
+Resource.create(rec_center_id: 1, name: "Tennis Pro", sports_type_id: 2)
 
-Resource.create(rec_center_id: 2, name: "Court 1", sports_type_id: 1)
-Resource.create(rec_center_id: 2, name: "Court 2", sports_type_id: 1)
-Resource.create(rec_center_id: 2, name: "Court 3", sports_type_id: 1)
-Resource.create(rec_center_id: 2, name: "Court 4", sports_type_id: 1)
+Resource.create(rec_center_id: 2, name: "Pickleball 1", sports_type_id: 1)
+Resource.create(rec_center_id: 2, name: "Pickleball 2", sports_type_id: 1)
+Resource.create(rec_center_id: 2, name: "Pickleball 3", sports_type_id: 1)
+Resource.create(rec_center_id: 2, name: "Pickleball 4", sports_type_id: 1)
 
-Resource.create(rec_center_id: 3, name: "Court 1", sports_type_id: 1)
-Resource.create(rec_center_id: 3, name: "Court 2", sports_type_id: 1)
-Resource.create(rec_center_id: 3, name: "Court 3", sports_type_id: 2)
-Resource.create(rec_center_id: 3, name: "Court 4", sports_type_id: 2)
-Resource.create(rec_center_id: 3, name: "Court 5", sports_type_id: 2)
-Resource.create(rec_center_id: 3, name: "Court 6", sports_type_id: 2)
+Resource.create(rec_center_id: 3, name: "Pickleball 1", sports_type_id: 1)
+Resource.create(rec_center_id: 3, name: "Pickleball 2", sports_type_id: 1)
+Resource.create(rec_center_id: 3, name: "Tennis 1", sports_type_id: 2)
+Resource.create(rec_center_id: 3, name: "Tennis 2", sports_type_id: 2)
+Resource.create(rec_center_id: 3, name: "Tennis 3", sports_type_id: 2)
+Resource.create(rec_center_id: 3, name: "Tennis 4", sports_type_id: 2)
 
 Resource.create(rec_center_id: 4, name: "Court 1", sports_type_id: 1)
 
-Resource.create(rec_center_id: 5, name: "Court 1", sports_type_id: 1)
-Resource.create(rec_center_id: 5, name: "Court 2", sports_type_id: 1)
-Resource.create(rec_center_id: 5, name: "Court 3", sports_type_id: 1)
-Resource.create(rec_center_id: 5, name: "Court 4", sports_type_id: 2)
-Resource.create(rec_center_id: 5, name: "Court 5", sports_type_id: 2)
+Resource.create(rec_center_id: 5, name: "Pickleball 1", sports_type_id: 1)
+Resource.create(rec_center_id: 5, name: "Pickleball 2", sports_type_id: 1)
+Resource.create(rec_center_id: 5, name: "Pickleball 3", sports_type_id: 1)
+Resource.create(rec_center_id: 5, name: "Tennis 1", sports_type_id: 2)
+Resource.create(rec_center_id: 5, name: "Tennis 2", sports_type_id: 2)
 
 puts "Seeding reservations..."
 # Reservations
