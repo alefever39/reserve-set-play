@@ -15,6 +15,9 @@ function PlayerContainer({
   setDisplayRecCenter,
   displayResources,
   reservations,
+  addToReservationState,
+  updateReservationState,
+  setReservations,
 }) {
   const [displayReservation, setDisplayReservation] = useState("");
   const [editReservationId, setEditReservationId] = useState(null);
@@ -52,10 +55,13 @@ function PlayerContainer({
       },
       credentials: "include",
       body: JSON.stringify(newReservation),
-    }).then(() => {
-      setDisplayReservation("");
-      history.push("/home/my_reservations");
-    });
+    })
+      .then((r) => r.json())
+      .then((reservation) => {
+        setDisplayReservation("");
+        addToReservationState(reservation);
+        history.push("/home/my_reservations");
+      });
   }
 
   function handleEdit(edittedReservation) {
@@ -83,7 +89,13 @@ function PlayerContainer({
       },
       credentials: "include",
       body: JSON.stringify(updatedReservation),
-    }).then(history.push("/home/my_reservations"));
+    })
+      .then((r) => r.json())
+      .then((updatedReservation) => {
+        setDisplayReservation("");
+        updateReservationState(updatedReservation);
+        history.push("/home/my_reservations");
+      });
   }
 
   return (
@@ -94,6 +106,7 @@ function PlayerContainer({
             user={user}
             handleEdit={handleEdit}
             reservations={reservations}
+            setReservations={setReservations}
           />
         </Route>
         <Route path="/home">

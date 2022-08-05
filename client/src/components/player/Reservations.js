@@ -3,7 +3,8 @@ import { Flex, Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { getPreviousDay } from "../helperFunctions.js";
 
-function Reservations({ user, handleEdit, reservations }) {
+function Reservations({ user, handleEdit, reservations, setReservations }) {
+
   const yesterday = getPreviousDay();
 
   const userReservationCards = reservations
