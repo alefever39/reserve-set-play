@@ -17,7 +17,9 @@ function SpaceContainer({
   setDisplayRecCenter,
   admin,
   handleUpdate,
-  handleAdminReservation
+  handleAdminReservation,
+  reservations,
+  setDisplayReservation,
 }) {
   return (
     <div>
@@ -35,6 +37,7 @@ function SpaceContainer({
           displayRecCenter={displayRecCenter}
           displayResources={displayResources}
           handleCalendarSelection={handleCalendarSelection}
+          reservations={reservations}
         />
       ) : (
         <CircularProgress isIndeterminate color="green.300" />
@@ -44,6 +47,7 @@ function SpaceContainer({
         handleNewReservation={handleNewReservation}
         handleUpdate={handleUpdate}
         handleAdminReservation={handleAdminReservation}
+        setDisplayReservation={setDisplayReservation}
       />
     </div>
   );

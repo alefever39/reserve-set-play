@@ -7,8 +7,6 @@ import { buildYearMonthDay } from "../helperFunctions.js";
 function PlayerContainer({
   user,
   recCenters,
-  loginModalOpen,
-  setLoginModalOpen,
   displayDate,
   setDisplayDate,
   displayRecCenter,
@@ -18,8 +16,9 @@ function PlayerContainer({
   addToReservationState,
   updateReservationState,
   setReservations,
+  displayReservation,
+  setDisplayReservation,
 }) {
-  const [displayReservation, setDisplayReservation] = useState("");
   const [editReservationId, setEditReservationId] = useState(null);
   const history = useHistory();
 
@@ -122,6 +121,8 @@ function PlayerContainer({
             setDisplayRecCenter={setDisplayRecCenter}
             admin={false}
             handleUpdate={handleUpdate}
+            reservations={reservations}
+            setDisplayReservation={setDisplayReservation}
           />
         </Route>
       </Switch>

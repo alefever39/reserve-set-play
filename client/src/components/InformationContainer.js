@@ -45,17 +45,26 @@ function InformationContainer({
         .then((resourceData) => {
           setDisplayResources(resourceData);
         });
+    } else {
+      fetch(`http://127.0.0.1:3000/admin/rec_centers/1/resources`, {
+        method: "GET",
+        credentials: "include",
+      })
+        .then((r) => r.json())
+        .then((resourceData) => {
+          setDisplayResources(resourceData);
+        });
     }
   }, [readyToLoad, displayRecCenter]);
 
   useEffect(() => {
+    console.log(user);
     fetch(`http://localhost:3000/users/${user.id}/reservations`, {
       method: "GET",
       credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log("reservations set", data);
         setReservations(data);
       });
   }, [user]);
@@ -109,6 +118,8 @@ function InformationContainer({
               displayRecCenter={displayRecCenter}
               setDisplayRecCenter={setDisplayRecCenter}
               displayResources={displayResources}
+              addToReservationState={addToReservationState}
+              reservations={reservations}
             />
           </Route>
           <Route path="/home">
