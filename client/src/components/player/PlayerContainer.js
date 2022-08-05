@@ -110,6 +110,7 @@ function PlayerContainer({
       );
       setReservations(updatedReservationsList);
       setDisplayReservation("");
+      history.push("/home/my_reservations");
   }
 
   return (
