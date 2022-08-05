@@ -19,7 +19,7 @@ function ReservationCard({ reservation, handleEdit, removeReservation }) {
   }
 
   function handleDelete() {
-    fetch(`http://localhost:3000/reservations/${reservation.id}`, {
+    fetch(`/reservations/${reservation.id}`, {
       method: "DELETE",
       credentials: "include",
     }).then(removeReservation(reservation.id));

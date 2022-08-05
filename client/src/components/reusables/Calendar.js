@@ -24,7 +24,7 @@ function Calendar({
 
   useEffect(() => {
     fetch(
-      `http://localhost:3000/admin/rec_centers/${
+      `/admin/rec_centers/${
         displayRecCenter.id
       }/reservations/${buildYearMonthDay(displayDate)}`,
       {

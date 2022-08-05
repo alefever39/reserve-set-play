@@ -13,6 +13,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function SignupForm({ setSignup, initialRef, setUser, handleClose }) {
   const initialFormData = {
@@ -24,6 +25,7 @@ function SignupForm({ setSignup, initialRef, setUser, handleClose }) {
   };
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState([]);
+  const history = useHistory();
 
   function handleInputChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -54,6 +56,11 @@ function SignupForm({ setSignup, initialRef, setUser, handleClose }) {
           });
         } else {
           setUser(data);
+          if (data.user_type.user_type === "player") {
+            history.push("/home");
+          } else if (data.user_type.user_type === "admin") {
+            history.push("/admin");
+          }
           handleClose();
         }
       });
