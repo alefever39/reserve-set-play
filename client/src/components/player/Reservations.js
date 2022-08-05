@@ -2,19 +2,8 @@ import ReservationCard from "./ReservationCard";
 import { Flex, Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
-function Reservations({ user, handleEdit }) {
-  const [reservations, setReservations] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:3000/users/${user.id}/reservations`, {
-      method: "get",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => setReservations(data));
-  }, []);
-
+function Reservations({ user, handleEdit, reservations }) {
   const userReservationCards = reservations.map((reservation) => (
-
     <ReservationCard
       key={reservation.id}
       reservation={reservation}
@@ -23,10 +12,11 @@ function Reservations({ user, handleEdit }) {
     />
   ));
 
-
-  function removeReservation(deletedReservationId){
-    const updatedReservationsList = reservations.filter((reservation) => reservation.id!== deletedReservationId)
-    setReservations(updatedReservationsList)
+  function removeReservation(deletedReservationId) {
+    const updatedReservationsList = reservations.filter(
+      (reservation) => reservation.id !== deletedReservationId
+    );
+    setReservations(updatedReservationsList);
   }
 
   return (

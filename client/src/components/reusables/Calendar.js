@@ -216,6 +216,7 @@ function Calendar({
             gridTemplateRows={dynamicRows}
             gap={4}
             mx={190}
+            mt="30px"
           >
             {calendarTopRow}
             {calendarBody}
