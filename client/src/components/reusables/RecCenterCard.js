@@ -17,6 +17,7 @@ function RecCenterCard({ recCenter, admin }) {
       boxShadow="md"
       py="20px"
       align="center"
+      onClick={handleClick}
     >
       <Image
         fit
