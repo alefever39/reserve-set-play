@@ -1,14 +1,16 @@
 import { useHistory } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
-function EditReservation({ handleUpdate }) {
+function EditReservation({ handleUpdate, setDisplayReservation }) {
   const history = useHistory();
 
-  function handleReRoute(){
-    history.push("/home/my_reservations")
+  function handleReRoute() {
+    setDisplayReservation("");
+    history.push("/home/my_reservations");
   }
 
-  function handleDelete(){
-    console.log("Player wants to delete a reservation")
+  function handleDelete() {
+    setDisplayReservation("");
+    console.log("Player wants to delete a reservation");
   }
   return (
     <>

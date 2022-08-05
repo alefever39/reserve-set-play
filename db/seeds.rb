@@ -22,7 +22,7 @@ RecCenter.create(
   name: "La Alma",
   address: "1325 W. 11th Ave. 80204",
   phone: Faker::PhoneNumber.cell_phone,
-  description: "La Alma is a Neighborhood Level recreation center located in the southwest area. Its facility features include: Multipurpose room, Game room with ping pong, foosball, and a pool table."
+  description: "La Alma is a Neighborhood Level recreation center located in the southwest area. Its facility features include: Multipurpose room, Game room with ping pong, foosball, and a pool table.",
   opens_at: "10:00:00",
   closes_at: "23:00:00",
   image: "../images/map_image.png"

@@ -7,6 +7,7 @@ function Calendar({
   displayRecCenter,
   displayResources,
   handleCalendarSelection,
+  reservations,
 }) {
   const [existingCalendarIds, setExistingCalendarIds] = useState([]);
   const [readyToLoad, setReadyToLoad] = useState(false);
@@ -47,7 +48,7 @@ function Calendar({
         setExistingCalendarIds(reservationCalendarIds);
         setReadyToLoad(true);
       });
-  }, [displayDate, displayRecCenter]);
+  }, [displayDate, displayRecCenter, reservations]);
 
   const calendarTopRow = [];
   const calendarBody = [];

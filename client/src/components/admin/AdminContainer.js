@@ -18,6 +18,8 @@ function AdminContainer({
   setDisplayRecCenter,
   handleNewReservation,
   displayResources,
+  addToReservationState,
+  reservations,
 }) {
   const history = useHistory();
 
@@ -33,8 +35,8 @@ function AdminContainer({
     setDisplayReservation(currentCalendarSelection);
   }
 
-  function handleAdminReservation(){
-    console.log(displayReservation)
+  function handleAdminReservation() {
+    console.log(displayReservation);
     const newReservation = {
       datetime_start: `${buildYearMonthDay(displayReservation.date)}T${
         displayReservation.time
@@ -54,10 +56,13 @@ function AdminContainer({
       },
       credentials: "include",
       body: JSON.stringify(newReservation),
-    }).then(() => {
-      setDisplayReservation("");
-      window.scrollTo({ top: 0, behavior: 'smooth'});
-    });
+    })
+      .then((r) => r.json())
+      .then((newReservation) => {
+        setDisplayReservation("");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        addToReservationState(newReservation);
+      });
   }
 
   return (
@@ -85,6 +90,8 @@ function AdminContainer({
             displayResources={displayResources}
             admin={true}
             handleAdminReservation={handleAdminReservation}
+            reservations={reservations}
+            setDisplayReservation={setDisplayReservation}
           />
         </Route>
       </Switch>
