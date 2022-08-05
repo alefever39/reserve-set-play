@@ -4,13 +4,16 @@ import SignupForm from "./SignupForm";
 import { Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useState, useRef } from "react";
 
-function LoginModal({ setLoginModalOpen, setUser }) {
+function LoginModal({ setLoginModalOpen, setUser, openSignup, setOpenSignup }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [signup, setSignup] = useState(false);
   const initialRef = useRef();
 
   useEffect(() => {
+    if (openSignup) {
+      setSignup(true);
+    }
     onOpen();
 
     return function cleanUp() {
@@ -20,6 +23,7 @@ function LoginModal({ setLoginModalOpen, setUser }) {
 
   function handleClose() {
     setLoginModalOpen(false);
+    setOpenSignup(false);
     onClose();
   }
 

@@ -14,7 +14,7 @@ function InformationContainer({
 }) {
   const [recCenters, setRecCenters] = useState([]);
   const [displayDate, setDisplayDate] = useState(new Date());
-  const [displayReservation, setDisplayReservation] = useState({});
+  const [displayReservation, setDisplayReservation] = useState("");
   const [displayRecCenter, setDisplayRecCenter] = useState([]);
   const [displayResources, setDisplayResources] = useState([]);
   const [reservations, setReservations] = useState([]);
@@ -30,7 +30,7 @@ function InformationContainer({
         setRecCenters(data);
         setDisplayRecCenter(data[0]);
       });
-  }, []);
+  }, [readyToLoad]);
 
   useEffect(() => {
     if (displayRecCenter) {
@@ -42,9 +42,11 @@ function InformationContainer({
         }
       )
         .then((r) => r.json())
-        .then((resourceData) => setDisplayResources(resourceData));
+        .then((resourceData) => {
+          setDisplayResources(resourceData);
+        });
     }
-  }, [displayRecCenter]);
+  }, [readyToLoad, displayRecCenter]);
 
   useEffect(() => {
     fetch(`http://localhost:3000/users/${user.id}/reservations`, {
@@ -73,7 +75,7 @@ function InformationContainer({
     } else {
       history.push("/");
     }
-  }, [user]);
+  }, [readyToLoad]);
 
   function updateReservationState(updatedReservation) {
     const updatedReservations = reservations.map((reservation) => {

@@ -20,6 +20,7 @@ class UsersController < ApplicationController
       params_hash = user_params.to_h
       params_hash[:user_type_id] = user_type_id
       user = User.create!(params_hash)
+      session[:user_id] = user.id
       render json: user, status: :created
     else
       render json: { errors: ["Confirmation password does not match password"] }
