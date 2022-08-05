@@ -49,7 +49,7 @@ function AdminContainer({
       user_id: user.id,
     };
 
-    fetch(`http://127.0.0.1:3000/reservations`, {
+    fetch(`/reservations`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

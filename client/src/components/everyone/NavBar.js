@@ -77,7 +77,7 @@ function NavBar({ setLoginModalOpen, user, setUser }) {
   }
 
   function handleLogout() {
-    fetch("http://localhost:3000/logout", {
+    fetch("/logout", {
       method: "DELETE",
       credentials: "include",
     }).then((res) => setUser({}));
