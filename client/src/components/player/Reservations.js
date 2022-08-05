@@ -2,7 +2,7 @@ import ReservationCard from "./ReservationCard";
 import { Flex, Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
-function Reservations({ user, handleEdit, reservations }) {
+function Reservations({ user, handleEdit, reservations, setReservations }) {
   const userReservationCards = reservations.map((reservation) => (
     <ReservationCard
       key={reservation.id}

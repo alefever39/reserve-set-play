@@ -48,12 +48,15 @@ function InformationContainer({
 
   useEffect(() => {
     fetch(`http://localhost:3000/users/${user.id}/reservations`, {
-      method: "get",
+      method: "GET",
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((data) => setReservations(data));
-  }, []);
+      .then((data) => {
+        // console.log("reservations set", data);
+        setReservations(data);
+      });
+  }, [user]);
 
   useEffect(() => {
     if (user.user_type) {
@@ -71,6 +74,21 @@ function InformationContainer({
       history.push("/");
     }
   }, [user]);
+
+  function updateReservationState(updatedReservation) {
+    const updatedReservations = reservations.map((reservation) => {
+      if (reservation.id === updatedReservation.id) {
+        return updatedReservation;
+      } else {
+        return reservation;
+      }
+    });
+    setReservations(updatedReservations);
+  }
+
+  function addToReservationState(newReservation) {
+    setReservations([...reservations, newReservation]);
+  }
 
   return (
     <>
@@ -105,6 +123,9 @@ function InformationContainer({
               setDisplayRecCenter={setDisplayRecCenter}
               displayResources={displayResources}
               reservations={reservations}
+              addToReservationState={addToReservationState}
+              updateReservationState={updateReservationState}
+              setReservations={setReservations}
             />
           </Route>
           <Route path="/">
