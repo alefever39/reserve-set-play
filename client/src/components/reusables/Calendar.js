@@ -40,9 +40,22 @@ function Calendar({
           const recOpenTime = recOpenDateTime.getUTCHours();
           const reservationStartTime = reservationStartDateTime.getUTCHours();
           const hoursFromOpenTime = reservationStartTime - recOpenTime;
-          const resourceIndex = reservation.resource.id;
+          const resourceIndex =
+            displayResources.findIndex(
+              (resource) => resource.id === reservation.resource.id
+            ) + 1;
           const calendarId =
             (hoursFromOpenTime + 1) * gridColumns + resourceIndex;
+          console.log(
+            "reservation",
+            reservation,
+            "hoursfromOpen",
+            hoursFromOpenTime,
+            "gridcolumns",
+            gridColumns,
+            "resourceIndex",
+            resourceIndex
+          );
           return `calendarId:${calendarId}`;
         });
         const allUnavilableTimes = dayOfBlockOff(reservationCalendarIds);

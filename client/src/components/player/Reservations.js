@@ -3,8 +3,10 @@ import { Flex, Box, Heading, SimpleGrid, Button } from "@chakra-ui/react";
 import { getPreviousDay } from "../helperFunctions.js";
 import { useHistory } from "react-router-dom";
 
+
 function Reservations({ handleEdit, handleDelete, reservations, setReservations }) {
   const history = useHistory();
+
   const yesterday = getPreviousDay();
 
   const userReservationCards = reservations
@@ -19,7 +21,7 @@ function Reservations({ handleEdit, handleDelete, reservations, setReservations 
             key={reservation.id}
             reservation={reservation}
             allReservations={reservations}
-            setReservations = {setReservations}
+            setReservations={setReservations}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
           />
@@ -62,18 +64,17 @@ function Reservations({ handleEdit, handleDelete, reservations, setReservations 
     //   {reservations.length > 0 ? hasReservations : noReservations}
     // </>
     <Box>
-      <Flex
-        h="100px"
-        justifyContent="space-between"
-        alignItems="center"
-        mx="15px"
-      >
+      <Flex h="100px" alignItems="center" mx="15px">
         <Heading as="h1">Upcoming Reservations</Heading>
         <Button m="20px" onClick={handleClick}>Make a booking</Button>
       </Flex>
-      <SimpleGrid minChildWidth="340px"spacing="30px" mx="15px">
-        {userReservationCards}
-      </SimpleGrid>
+
+      <Box justifyContent="center" overflow="hidden">
+        <SimpleGrid minChildWidth="320px" spacing="30px" mx="15px">
+          {userReservationCards}
+        </SimpleGrid>
+      </Box>
+
     </Box>
   );
 }
