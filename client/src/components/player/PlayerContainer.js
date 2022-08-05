@@ -64,7 +64,6 @@ function PlayerContainer({
   }
 
   function handleEdit(edittedReservation) {
-    console.log("player container", edittedReservation.recCenter);
     setDisplayReservation(edittedReservation);
     setDisplayDate(new Date(edittedReservation.date));
     setDisplayRecCenter(edittedReservation.recCenter);
@@ -97,6 +96,22 @@ function PlayerContainer({
       });
   }
 
+  function handleDelete(){
+    console.log(editReservationId)
+     fetch(`http://localhost:3000/reservations/${editReservationId}`, {
+      method: "DELETE",
+      credentials: "include",
+    }).then(removeReservation(editReservationId));
+  }
+
+  function removeReservation(deletedReservationId) {
+      const updatedReservationsList = reservations.filter(
+        (reservation) => reservation.id !== deletedReservationId
+      );
+      setReservations(updatedReservationsList);
+      setDisplayReservation("");
+  }
+
   return (
     <div>
       <Switch>
@@ -104,6 +119,7 @@ function PlayerContainer({
           <Reservations
             user={user}
             handleEdit={handleEdit}
+            handleDelete={handleDelete}
             reservations={reservations}
             setReservations={setReservations}
           />
@@ -121,6 +137,7 @@ function PlayerContainer({
             setDisplayRecCenter={setDisplayRecCenter}
             admin={false}
             handleUpdate={handleUpdate}
+            handleDelete={handleDelete}
             reservations={reservations}
             setDisplayReservation={setDisplayReservation}
           />

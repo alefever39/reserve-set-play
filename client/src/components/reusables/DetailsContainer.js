@@ -7,6 +7,7 @@ function DetailsContainer({
   handleNewReservation,
   handleAdminReservation,
   handleUpdate,
+  handleDelete,
   setDisplayReservation,
 }) {
   return (
@@ -22,6 +23,7 @@ function DetailsContainer({
       <ReservationEventContainer
         handleNewReservation={handleNewReservation}
         handleUpdate={handleUpdate}
+        handleDelete={handleDelete}
         handleAdminReservation={handleAdminReservation}
         setDisplayReservation={setDisplayReservation}
       />

@@ -1,6 +1,6 @@
-import { Flex, Box, Heading, Button } from "@chakra-ui/react";
+import { Flex, Box, Button } from "@chakra-ui/react";
 
-function ReservationCard({ reservation, handleEdit, removeReservation }) {
+function ReservationCard({ reservation, handleEdit, allReservations, setReservations }) {
   function handleClick() {
     const reservationToEdit = {
       id: reservation.id,
@@ -18,11 +18,14 @@ function ReservationCard({ reservation, handleEdit, removeReservation }) {
     handleEdit(reservationToEdit);
   }
 
-  function handleDelete() {
-    fetch(`http://localhost:3000/reservations/${reservation.id}`, {
+  //Handles delete directly from the reservation card
+  function handleDeleteClick(){
+      fetch(`http://localhost:3000/reservations/${reservation.id}`, {
       method: "DELETE",
       credentials: "include",
-    }).then(removeReservation(reservation.id));
+    }).then(setReservations(allReservations.filter(
+            (remainingReservation) => remainingReservation.id !== reservation.id
+          )))    
   }
 
   return (
@@ -51,7 +54,7 @@ function ReservationCard({ reservation, handleEdit, removeReservation }) {
             colorScheme="teal"
             variant="outline"
             size="sm"
-            onClick={handleDelete}
+            onClick={handleDeleteClick}
             m="5px"
           >
             Cancel

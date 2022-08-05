@@ -1,10 +1,9 @@
 import ReservationCard from "./ReservationCard";
 import { Flex, Box, Heading, SimpleGrid } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
 import { getPreviousDay } from "../helperFunctions.js";
 
-function Reservations({ user, handleEdit, reservations, setReservations }) {
-
+function Reservations({ handleEdit, handleDelete, reservations, setReservations }) {
+  
   const yesterday = getPreviousDay();
 
   const userReservationCards = reservations
@@ -18,19 +17,14 @@ function Reservations({ user, handleEdit, reservations, setReservations }) {
           <ReservationCard
             key={reservation.id}
             reservation={reservation}
+            allReservations={reservations}
+            setReservations = {setReservations}
             handleEdit={handleEdit}
-            removeReservation={removeReservation}
+            handleDelete={handleDelete}
           />
         );
     })
     .filter((n) => n);
-
-  function removeReservation(deletedReservationId) {
-    const updatedReservationsList = reservations.filter(
-      (reservation) => reservation.id !== deletedReservationId
-    );
-    setReservations(updatedReservationsList);
-  }
 
   return (
     <Box>
