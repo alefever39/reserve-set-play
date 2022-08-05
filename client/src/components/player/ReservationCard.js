@@ -1,6 +1,11 @@
 import { Flex, Box, Button } from "@chakra-ui/react";
 
-function ReservationCard({ reservation, handleEdit, allReservations, setReservations }) {
+function ReservationCard({
+  reservation,
+  handleEdit,
+  allReservations,
+  setReservations,
+}) {
   function handleClick() {
     const reservationToEdit = {
       id: reservation.id,
@@ -19,13 +24,17 @@ function ReservationCard({ reservation, handleEdit, allReservations, setReservat
   }
 
   //Handles delete directly from the reservation card
-  function handleDeleteClick(){
-      fetch(`http://localhost:3000/reservations/${reservation.id}`, {
+  function handleDeleteClick() {
+    fetch(`http://localhost:3000/reservations/${reservation.id}`, {
       method: "DELETE",
       credentials: "include",
-    }).then(setReservations(allReservations.filter(
-            (remainingReservation) => remainingReservation.id !== reservation.id
-          )))    
+    }).then(
+      setReservations(
+        allReservations.filter(
+          (remainingReservation) => remainingReservation.id !== reservation.id
+        )
+      )
+    );
   }
 
   return (
@@ -36,7 +45,7 @@ function ReservationCard({ reservation, handleEdit, allReservations, setReservat
       overflow="hidden"
       justifyContent="space-around"
     >
-      <Box fontWeight="semibold" m="10px">
+      <Box fontWeight="semibold" m="10px" borderShadow="md">
         {reservation.resource.name}
         <Box fontSize="s">Reservation time: {reservation.reservation_time}</Box>
         <Box
@@ -50,6 +59,9 @@ function ReservationCard({ reservation, handleEdit, allReservations, setReservat
           {reservation.rec_center.address}
         </Box>
         <Box>
+          <Button colorScheme="teal" size="sm" onClick={handleClick} m="5px">
+            Change
+          </Button>
           <Button
             colorScheme="teal"
             variant="outline"
@@ -58,9 +70,6 @@ function ReservationCard({ reservation, handleEdit, allReservations, setReservat
             m="5px"
           >
             Cancel
-          </Button>
-          <Button colorScheme="teal" size="sm" onClick={handleClick} m="5px">
-            Change
           </Button>
         </Box>
       </Box>

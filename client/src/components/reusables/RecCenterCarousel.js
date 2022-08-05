@@ -96,6 +96,7 @@ function RecCenterCarousel({
           colorScheme="teal"
           border="none"
           variant="outline"
+          zIndex={0}
         >
           ◀
         </Button>
@@ -105,6 +106,7 @@ function RecCenterCarousel({
           colorScheme="teal"
           border="none"
           variant="outline"
+          zIndex={0}
         >
           ▶
         </Button>
