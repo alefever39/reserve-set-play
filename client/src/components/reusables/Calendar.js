@@ -25,7 +25,7 @@ function Calendar({
   useEffect(() => {
     fetch(
       `/admin/rec_centers/${
-        displayRecCenter.id
+        displayRecCenter ? displayRecCenter.id : 1
       }/reservations/${buildYearMonthDay(displayDate)}`,
       {
         method: "GET",
@@ -41,9 +41,11 @@ function Calendar({
           const reservationStartTime = reservationStartDateTime.getUTCHours();
           const hoursFromOpenTime = reservationStartTime - recOpenTime;
           const resourceIndex =
-            displayResources.findIndex(
-              (resource) => resource.id === reservation.resource.id
-            ) + 1;
+            displayResources.length > 0
+              ? displayResources.findIndex(
+                  (resource) => resource.id === reservation.resource.id
+                ) + 1
+              : 1;
           const calendarId =
             (hoursFromOpenTime + 1) * gridColumns + resourceIndex;
           return `calendarId:${calendarId}`;
