@@ -68,7 +68,7 @@ function SignupForm({ setSignup, initialRef, setUser, handleClose }) {
 
   return (
     <ModalContent>
-      <ModalHeader>Signup</ModalHeader>
+      <ModalHeader>Sign Up</ModalHeader>
       <ModalCloseButton />
       <ModalBody>
         <form onSubmit={handleSignupSubmit}>
@@ -147,7 +147,7 @@ function SignupForm({ setSignup, initialRef, setUser, handleClose }) {
           <Flex>
             <Spacer />
             <Button colorScheme="teal" type="submit">
-              Signup
+              Sign Up
             </Button>
             <Spacer />
           </Flex>
