@@ -25,7 +25,7 @@ function ReservationCard({
 
   //Handles delete directly from the reservation card
   function handleDeleteClick() {
-    fetch(`http://localhost:3000/reservations/${reservation.id}`, {
+    fetch(`/reservations/${reservation.id}`, {
       method: "DELETE",
       credentials: "include",
     }).then(
